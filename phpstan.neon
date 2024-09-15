@@ -6,3 +6,6 @@ parameters:
     paths:
         - src/
     level: 5
+    ignoreErrors:
+        - '#Parameter \#2 \$replace of function substr_replace expects array\|string, Illuminate\\Contracts\\Support\\Htmlable given.#'
+        - '#Parameter \#2 \$replace of function substr_replace expects array\|string, Illuminate\\Contracts\\View\\View given.#'

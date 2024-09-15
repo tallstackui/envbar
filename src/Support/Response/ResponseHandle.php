@@ -20,12 +20,11 @@ readonly class ResponseHandle
             $content = substr_replace($content, $this->render->js(), $head + 6, 0);
         }
 
-        // TODO: test with x-on:redirect on tag body
         if (($start = strpos($content, '<body')) !== false) {
-            $end = strpos($content, '>', $start);
+            $end = strpos($content, '">', $start);
 
             if ($end !== false) {
-                $content = substr_replace($content, $this->render->component(), $end + 1, 0);
+                $content = substr_replace($content, $this->render->component(), $end + 3, 0);
             }
         }
 
