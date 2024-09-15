@@ -6,23 +6,29 @@
     ]) x-data="envbar()" x-show="show">
     <div class="eb-flex eb-items-center eb-ml-2 eb-gap-1">
         <div class="eb-inline-flex eb-items-center eb-gap-1">
-            @lang('envbar::messages.you-are-in-the')
-            <x-envbar::badge :$configuration>
+            <x-envbar::icons.laravel class="eb-h-6 eb-w-6 eb-text-green-700" />
+            @lang('envbar::messages.environment')
+            <x-envbar::badge>
                 local
             </x-envbar::badge>
-            @lang('envbar::messages.environment')
-            <x-envbar::branch class="eb-w-4 eb-h-4" gray />
+            <x-envbar::icons.fork class="eb-h-6 eb-w-6 eb-text-green-700" />
         </div>
         <div class="eb-flex eb-flex-row eb-items-center eb-gap-1">
             <div class="eb-inline-flex eb-items-center eb-gap-1">
-                @lang('envbar::messages.the-current-source-is', ['source' => true ? 'release' : 'branch'])
+                @lang('envbar::messages.branch')
                 <x-envbar::badge>feat/foobar</x-envbar::badge>
             </div>
         </div>
+        <div class="eb-inline-flex eb-items-center eb-gap-1">
+            <x-envbar::icons.tag class="eb-h-4 eb-w-4 eb-text-green-700" />
+            @lang('envbar::messages.release')
+            <x-envbar::badge>v2.11.23</x-envbar::badge>
+        </div>
         <div class="eb-flex eb-absolute eb-right-1 eb-items-center">
+            <x-envbar::badge>XL</x-envbar::badge>
             @if ($configuration['closable']['enabled'])
                 <button type="button" x-on:click="close(@js($configuration['closable']['timeout']))">
-                    <x-envbar::icons.x-mark class="eb-h-4 eb-w-4" />
+                    <x-envbar::icons.x class="eb-h-4 eb-w-4" />
                 </button>
             @endif
         </div>

@@ -1,9 +1,9 @@
 # ToDo
 
-- [ ] Status
-- [ ] Environments
-- [ ] Hide on mobile
-- [ ] Display only on specific browsers
-- [ ] Colors
+- [x] Status
+- [x] Environments
+- [x] Hide on mobile
+- [x] Colors
+- [x] Display only for specific authenticated users
+- [ ] Display tailwindcss breaking points
 - [ ] Git provides (Github, Bitbucket)
-- [ ] Display only for specific authenticated users

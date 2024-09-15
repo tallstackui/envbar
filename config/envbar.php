@@ -5,13 +5,15 @@ return [
 
     'fixed' => true,
 
+    'tailwind_breaking_points' => true,
+
     'closable' => [
         'enabled' => true,
 
         'timeout' => null,
     ],
 
-    // TODO: we need to validate this
+    // TODO: we need to validate this.
     'environments' => [
         'local' => 'green',
         'sandbox' => 'yellow',
