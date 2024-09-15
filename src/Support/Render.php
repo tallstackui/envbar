@@ -5,6 +5,7 @@ namespace TallStackUi\EnvBar\Support;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\HtmlString;
+use Symfony\Component\HttpFoundation\Response;
 
 class Render
 {
@@ -20,5 +21,10 @@ class Render
     public function component(): View
     {
         return view('envbar::components.envbar');
+    }
+
+    public function handle(Response $response): Response
+    {
+        return (new ResponseHandle($this, $response))();
     }
 }

@@ -2,7 +2,6 @@
 
 namespace TallStackUi\EnvBar\Support;
 
-use Detection\Exception\MobileDetectException;
 use Detection\MobileDetect;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -17,9 +16,6 @@ readonly class PreventInjection
 
     /**
      * Determine if the injection should be aborted.
-     *
-     * @return bool
-     * @throws MobileDetectException
      */
     public function aborted(): bool
     {
@@ -58,13 +54,12 @@ readonly class PreventInjection
         return ! in_array(app()->environment(), config('envbar.environments'));
     }
 
-    /** @throws MobileDetectException */
     private function forMobile(): bool
     {
         if (config('envbar.on_mobile')) {
             return false;
         }
 
-        return rescue(fn () => (new MobileDetect())->isMobile(), false);
+        return rescue(fn () => (new MobileDetect)->isMobile(), false);
     }
 }
