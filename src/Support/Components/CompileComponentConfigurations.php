@@ -9,6 +9,7 @@ class CompileComponentConfigurations
         $variables = [];
 
         foreach ([
+            'fixed',
             'backgroundColor',
         ] as $method) {
             $variables[$method] = $this->{$method}();
@@ -47,5 +48,10 @@ class CompileComponentConfigurations
             'black' => 'eb-bg-black',
             default => 'eb-bg-eb-500',
         };
+    }
+
+    private function fixed(): bool
+    {
+        return config('envbar.fixed');
     }
 }

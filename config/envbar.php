@@ -3,6 +3,8 @@
 return [
     'enabled' => true,
 
+    'fixed' => true,
+
     'environments' => [
         'local' => 'green',
         'sandbox' => 'yellow',
