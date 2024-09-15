@@ -21,13 +21,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Tallstackui\\Envbar\\": "src/"
+            "TallStackUi\\EnvBar\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "EnvBar\\EnvBarUiServiceProvider"
+                "TallStackUi\\EnvBar\\EnvBarServiceProvider"
             ]
         }
     },
