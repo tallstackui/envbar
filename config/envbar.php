@@ -180,16 +180,16 @@ return [
     */
     'providers' => [
         'github' => [
-            'repository' => env('ENVBAR_GITHUB_REPOSITORY'),
-            'username' => env('ENVBAR_GITHUB_USERNAME'),
-            'token' => env('ENVBAR_GITHUB_TOKEN'),
+            'repository' => null,
+            'username' => null,
+            'token' => null,
         ],
 
         'bitbucket' => [
-            'workspace' => env('ENVBAR_BITBUCKET_WORKSPACE'),
-            'repository' => env('ENVBAR_BITBUCKET_REPOSITORY'),
-            'username' => env('ENVBAR_BITBUCKET_USERNAME'),
-            'token' => env('ENVBAR_BITBUCKET_TOKEN'),
+            'workspace' => null,
+            'repository' => null,
+            'username' => null,
+            'token' => null,
         ],
     ],
 ];
