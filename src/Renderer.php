@@ -14,13 +14,15 @@ class Renderer
         return Vite::useBuildDirectory('vendor/tallstackui/envbar')
             ->withEntryPoints([
                 'resources/css/app.css',
-                'resources/js/app.js'
+                'resources/js/app.js',
             ])
             ->toHtml();
     }
 
     public function bar(): View
     {
+        $prefix = config('tallstackui.prefix');
+
         return view('envbar::components.envbar');
     }
 }

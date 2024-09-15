@@ -14,7 +14,7 @@ class PublishCommand extends Command
     {
         $this->call('vendor:publish', [
             '--force' => true,
-            '--tag' => 'assets',
+            '--tag' => 'envbar-assets',
             '--provider' => 'TallStackUi\EnvBar\EnvBarServiceProvider',
         ]);
 
