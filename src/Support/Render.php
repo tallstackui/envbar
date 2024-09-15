@@ -1,15 +1,13 @@
 <?php
 
-namespace TallStackUi\EnvBar;
+namespace TallStackUi\EnvBar\Support;
 
-use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Vite;
 
-class Renderer
+class Render
 {
-    /** @throws Exception */
-    public function style(): string
+    public static function style(): string
     {
         return Vite::useBuildDirectory('vendor/tallstackui/envbar')
             ->withEntryPoints([
@@ -19,10 +17,8 @@ class Renderer
             ->toHtml();
     }
 
-    public function bar(): View
+    public function component(): View
     {
-        $prefix = config('tallstackui.prefix');
-
         return view('envbar::components.envbar');
     }
 }
