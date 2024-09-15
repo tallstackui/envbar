@@ -1,6 +1,6 @@
 <?php
 
-namespace TallStackUi\EnvBar\Support\Response;
+namespace TallStackUi\EnvBar\Response;
 
 use Symfony\Component\HttpFoundation\Response;
 
@@ -11,6 +11,9 @@ readonly class ResponseHandle
         //
     }
 
+    /**
+     * Inject all contents related to the EnvBar.
+     */
     public function __invoke(): Response
     {
         $content = $this->response->getContent();

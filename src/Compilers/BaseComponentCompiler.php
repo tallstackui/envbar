@@ -1,6 +1,6 @@
 <?php
 
-namespace TallStackUi\EnvBar\Support\Compilers;
+namespace TallStackUi\EnvBar\Compilers;
 
 class BaseComponentCompiler
 {
@@ -9,6 +9,11 @@ class BaseComponentCompiler
         $this->environment = app()->environment();
     }
 
+    /**
+     * Compiles the base component configurations.
+     *
+     * @return array|string[]
+     */
     public function __invoke(): array
     {
         $variables = ['configuration'];
@@ -27,6 +32,9 @@ class BaseComponentCompiler
         return $variables;
     }
 
+    /**
+     * Background, border and text colors.
+     */
     private function background(): string
     {
         $environments = config('envbar.environments');
@@ -58,6 +66,9 @@ class BaseComponentCompiler
         };
     }
 
+    /**
+     * Icons size and colors.
+     */
     private function icons(): string
     {
         $environments = config('envbar.environments');

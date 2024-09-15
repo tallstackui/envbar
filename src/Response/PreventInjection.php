@@ -1,6 +1,6 @@
 <?php
 
-namespace TallStackUi\EnvBar\Support\Response;
+namespace TallStackUi\EnvBar\Response;
 
 use Detection\MobileDetect;
 use Illuminate\Http\Request;
@@ -19,7 +19,7 @@ readonly class PreventInjection
      */
     public function aborted(): bool
     {
-        if (! config('envbar.enabled') || (config('envbar.disable_on_tests') && app()->runningUnitTests())) {
+        if (! config('envbar.enabled') || (config('envbar.disable_on_tests') === true && app()->runningUnitTests())) {
             return true;
         }
 

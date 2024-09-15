@@ -18,6 +18,9 @@ class EnvBarServiceProvider extends ServiceProvider
         $this->registerComponents();
     }
 
+    /**
+     * Register the EnvBar configuration stuffs.
+     */
     private function registerConfigurations(): void
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'envbar');
@@ -27,11 +30,17 @@ class EnvBarServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'envbar');
     }
 
+    /**
+     * Register the EnvBar middleware.
+     */
     private function registerMiddleware(): void
     {
         $this->app[Kernel::class]->appendMiddlewareToGroup('web', Injection::class);
     }
 
+    /**
+     * Register the EnvBar components.
+     */
     private function registerComponents(): void
     {
         $this->callAfterResolving(BladeCompiler::class, function (BladeCompiler $blade): void {

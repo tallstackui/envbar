@@ -3,8 +3,8 @@
 namespace TallStackUi\EnvBar\Middleware;
 
 use Closure;
-use TallStackUi\EnvBar\Support\Response\PreventInjection;
-use TallStackUi\EnvBar\Support\Response\Render;
+use TallStackUi\EnvBar\Response\PreventInjection;
+use TallStackUi\EnvBar\Response\Render;
 
 class Injection
 {

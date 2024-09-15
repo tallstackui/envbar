@@ -19,6 +19,9 @@ class Badge extends BaseComponent
         return view('envbar::components.badge');
     }
 
+    /**
+     * Set the colors.
+     */
     public function colors(): string
     {
         return match (data_get(config('envbar.environments'), app()->environment(), 'primary')) {

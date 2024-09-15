@@ -1,15 +1,18 @@
 <?php
 
-namespace TallStackUi\EnvBar\Support\Response;
+namespace TallStackUi\EnvBar\Response;
 
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\HtmlString;
 use Symfony\Component\HttpFoundation\Response;
-use TallStackUi\EnvBar\Support\Compilers\BaseComponentCompiler;
+use TallStackUi\EnvBar\Compilers\BaseComponentCompiler;
 
 class Render
 {
+    /**
+     * Get the CSS content.
+     */
     public static function css(): Htmlable
     {
         $css = file_get_contents(__DIR__.'/../../../dist/app.css');
@@ -19,6 +22,9 @@ class Render
         HTML);
     }
 
+    /**
+     * Get the JS content.
+     */
     public static function js(): Htmlable
     {
         $js = file_get_contents(__DIR__.'/../../../dist/app.js');
@@ -28,6 +34,9 @@ class Render
         HTML);
     }
 
+    /**
+     * Get the EnvBar component.
+     */
     public function component(): View
     {
         return view('envbar::components.envbar', [
@@ -35,6 +44,9 @@ class Render
         ]);
     }
 
+    /**
+     * Handle the response injection.
+     */
     public function handle(Response $response): Response
     {
         return (new ResponseHandle($this, $response))();
