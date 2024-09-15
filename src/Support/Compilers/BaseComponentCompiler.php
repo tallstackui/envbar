@@ -16,9 +16,9 @@ class BaseComponentCompiler
         foreach ([
             'fixed',
             'icons',
-            'warning',
             'closable',
             'background',
+            'warning_message',
             'tailwind_breaking_points',
         ] as $method) {
             $variables['configuration'][$method] = method_exists($this, $method) ? $this->{$method}() : config("envbar.{$method}");

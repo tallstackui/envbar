@@ -31,10 +31,10 @@
             <p>@lang('envbar::messages.release')</p>
             <x-envbar::badge>v2.11.23</x-envbar::badge>
         </div>
-        @if ($configuration['warning'])
+        @if ($configuration['warning_message'])
             <x-envbar::icons.exclamation-circle />
             <div>
-                {!! $configuration['warning'] !!}
+                {!! $configuration['warning_message'] !!}
             </div>
         @endif
         {{-- Right Side --}}
