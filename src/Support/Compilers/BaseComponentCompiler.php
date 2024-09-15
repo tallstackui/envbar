@@ -18,8 +18,9 @@ class BaseComponentCompiler
             'icons',
             'closable',
             'background',
+            'tailwind_breaking_points',
         ] as $method) {
-            $variables['configuration'][$method] = $this->{$method}();
+            $variables['configuration'][$method] = method_exists($this, $method) ? $this->{$method}() : config("envbar.{$method}");
         }
 
         return $variables;
@@ -85,15 +86,5 @@ class BaseComponentCompiler
             'rose' => 'eb-h-6 eb-w-6 eb-text-rose-700',
             default => 'eb-h-6 eb-w-6 eb-text-eb-700',
         };
-    }
-
-    private function closable(): array
-    {
-        return config('envbar.closable');
-    }
-
-    private function fixed(): bool
-    {
-        return config('envbar.fixed');
     }
 }

@@ -38,6 +38,8 @@ return [
 
     'on_mobile' => false,
 
+    'provider' => 'github',
+
     'providers' => [
         'github' => [
             'repository' => env('ENVBAR_GITHUB_REPOSITORY'),
