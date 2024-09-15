@@ -31,6 +31,12 @@
             <p>@lang('envbar::messages.release')</p>
             <x-envbar::badge>v2.11.23</x-envbar::badge>
         </div>
+        @if ($configuration['warning'])
+            <x-envbar::icons.exclamation-circle />
+            <div>
+                {!! $configuration['warning'] !!}
+            </div>
+        @endif
         {{-- Right Side --}}
         <div class="eb-flex eb-items-center eb-absolute eb-right-2" id="envbar-{{ $id }}-right-side">
             @if ($configuration['tailwind_breaking_points'])

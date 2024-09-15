@@ -16,6 +16,7 @@ class BaseComponentCompiler
         foreach ([
             'fixed',
             'icons',
+            'warning',
             'closable',
             'background',
             'tailwind_breaking_points',

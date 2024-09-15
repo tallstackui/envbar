@@ -9,6 +9,8 @@ return [
 
     'tailwind_breaking_points' => true,
 
+    'warning' => 'This is a development environment.',
+
     'closable' => [
         'enabled' => true,
 
