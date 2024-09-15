@@ -5,6 +5,12 @@ return [
 
     'fixed' => true,
 
+    'closable' => [
+        'enabled' => true,
+
+        'timeout' => null,
+    ],
+
     'environments' => [
         'local' => 'green',
         'sandbox' => 'yellow',

@@ -1,1 +1,1 @@
-
+const t=()=>({show:!0,init(){const e=localStorage.getItem("envbar::closed");e&&Date.now()<parseInt(e)&&(this.show=!1)},close(e=null){this.show=!1,localStorage.setItem("envbar::closed",String(Date.now()+3e5))}});document.addEventListener("alpine:init",()=>{Alpine.data("envbar",t)});

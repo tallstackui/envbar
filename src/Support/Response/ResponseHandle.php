@@ -17,6 +17,7 @@ readonly class ResponseHandle
 
         if (($head = strpos($content, '<head>')) !== false) {
             $content = substr_replace($content, $this->render->css(), $head + 6, 0);
+            $content = substr_replace($content, $this->render->js(), $head + 6, 0);
         }
 
         if (($start = strpos($content, '<body')) !== false) {

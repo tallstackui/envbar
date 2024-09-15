@@ -15,7 +15,16 @@ class Render
         $css = file_get_contents(__DIR__.'/../../../dist/app.css');
 
         return new HtmlString(<<<HTML
-        <style data-source="envbar">{$css}</style>
+        <style data-source="envbar-css">{$css}</style>
+        HTML);
+    }
+
+    public static function js(): Htmlable
+    {
+        $js = file_get_contents(__DIR__.'/../../../dist/app.js');
+
+        return new HtmlString(<<<HTML
+        <script data-source="envbar-js">{$js}</script>
         HTML);
     }
 

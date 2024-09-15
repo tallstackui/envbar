@@ -9,8 +9,9 @@ class CompileComponentConfigurations
         $variables = [];
 
         foreach ([
-            'fixed',
             'backgroundColor',
+            'closable',
+            'fixed',
         ] as $method) {
             $variables[$method] = $this->{$method}();
         }
@@ -48,6 +49,11 @@ class CompileComponentConfigurations
             'black' => 'eb-bg-black',
             default => 'eb-bg-eb-500',
         };
+    }
+
+    private function closable(): array
+    {
+        return config('envbar.closable');
     }
 
     private function fixed(): bool
