@@ -13,6 +13,11 @@ class EnvBarServiceProvider extends ServiceProvider
         $this->registerConfiguration();
 
         $this->registerMiddleware();
+
+        if ($this->app->runningInConsole()) {
+            $this->registerAssetTag();
+            $this->registerCommands();
+        }
     }
 
     private function registerConfiguration(): void
@@ -25,5 +30,17 @@ class EnvBarServiceProvider extends ServiceProvider
     private function registerMiddleware(): void
     {
         $this->app[Kernel::class]->pushMiddleware(Injection::class);
+    }
+
+    private function registerAssetTag(): void
+    {
+        $this->publishes([
+            __DIR__ . '/../public' => public_path(),
+        ], 'assets');
+    }
+
+    private function registerCommands(): void
+    {
+        $this->commands(Console\PublishCommand::class);
     }
 }

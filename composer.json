@@ -1,5 +1,5 @@
 {
-    "name": "tallstackui/env",
+    "name": "tallstackui/envbar",
     "description": "",
     "type": "library",
     "license": "MIT",
@@ -37,8 +37,8 @@
         "format": "./vendor/bin/pint",
         "analyse": "./vendor/bin/phpstan analyse --memory-limit=2G"
     },
-    "minimum-stability": "stable",
-    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "prefer-stable": false,
     "config": {
         "allow-plugins": {
             "pestphp/pest-plugin": true

@@ -4,14 +4,19 @@ namespace TallStackUi\EnvBar;
 
 use Exception;
 use Illuminate\Contracts\View\View;
-use Illuminate\Foundation\Vite;
+use Illuminate\Support\Facades\Vite;
 
 class Renderer
 {
     /** @throws Exception */
     public function style(): string
     {
-        return app(Vite::class)('resources/css/app.css', 'build/.vite');
+        return Vite::useBuildDirectory('vendor/tallstackui/envbar')
+            ->withEntryPoints([
+                'resources/css/app.css',
+                'resources/js/app.js'
+            ])
+            ->toHtml();
     }
 
     public function bar(): View

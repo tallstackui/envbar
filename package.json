@@ -4,6 +4,7 @@
   "repository": "git@github.com:tallstackui/envbar.git",
   "author": "AJ Meireles <alvaro.meireles@live.com>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build"

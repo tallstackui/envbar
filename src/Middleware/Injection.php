@@ -10,9 +10,9 @@ class Injection
 {
     public function handle($request, Closure $next)
     {
-        if (!config('envbar.enabled')) {
-            return $next($request);
-        }
+//        if (!config('envbar.enabled')) {
+//            return $next($request);
+//        }
 
         /** @var Response $response */
         $response = $next($request);

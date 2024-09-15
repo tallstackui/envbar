@@ -1,5 +1,5 @@
 node_modules
-vendor
+/vendor
 coverage
 tests/Browser/console
 tests/Browser/screenshots
