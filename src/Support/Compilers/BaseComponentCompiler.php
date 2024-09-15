@@ -4,14 +4,20 @@ namespace TallStackUi\EnvBar\Support\Compilers;
 
 class BaseComponentCompiler
 {
+    public function __construct(private ?string $environment = null)
+    {
+        $this->environment = app()->environment();
+    }
+
     public function __invoke(): array
     {
         $variables = ['configuration'];
 
         foreach ([
-            'colors',
-            'closable',
             'fixed',
+            'icons',
+            'closable',
+            'background',
         ] as $method) {
             $variables['configuration'][$method] = $this->{$method}();
         }
@@ -19,11 +25,11 @@ class BaseComponentCompiler
         return $variables;
     }
 
-    private function colors(): string
+    private function background(): string
     {
         $environments = config('envbar.environments');
 
-        return match (data_get($environments, app()->environment(), 'primary')) {
+        return match (data_get($environments, $this->environment, 'primary')) {
             'green' => 'eb-border-l-green-500 eb-text-green-700 eb-bg-green-100',
             'yellow' => 'eb-border-l-yellow-500 eb-text-yellow-700 eb-bg-yellow-100',
             'blue' => 'eb-border-l-blue-500 eb-text-blue-700 eb-bg-blue-100',
@@ -47,6 +53,37 @@ class BaseComponentCompiler
             'pink' => 'eb-border-l-pink-500 eb-text-pink-700 eb-bg-pink-100',
             'rose' => 'eb-border-l-rose-500 eb-text-rose-700 eb-bg-rose-100',
             default => 'eb-border-l-eb-500 eb-text-green-700 eb-bg-eb-100',
+        };
+    }
+
+    private function icons(): string
+    {
+        $environments = config('envbar.environments');
+
+        return match (data_get($environments, $this->environment, 'primary')) {
+            'green' => 'eb-h-6 eb-w-6 eb-text-green-700',
+            'yellow' => 'eb-h-6 eb-w-6 eb-text-yellow-700',
+            'blue' => 'eb-h-6 eb-w-6 eb-text-blue-700',
+            'red' => 'eb-h-6 eb-w-6 eb-text-red-700',
+            'slate' => 'eb-h-6 eb-w-6 eb-text-slate-700',
+            'gray' => 'eb-h-6 eb-w-6 eb-text-gray-700',
+            'zinc' => 'eb-h-6 eb-w-6 eb-text-zinc-700',
+            'neutral' => 'eb-h-6 eb-w-6 eb-text-neutral-700',
+            'stone' => 'eb-h-6 eb-w-6 eb-text-stone-700',
+            'orange' => 'eb-h-6 eb-w-6 eb-text-orange-700',
+            'amber' => 'eb-h-6 eb-w-6 eb-text-amber-700',
+            'lime' => 'eb-h-6 eb-w-6 eb-text-lime-700',
+            'emerald' => 'eb-h-6 eb-w-6 eb-text-emerald-700',
+            'teal' => 'eb-h-6 eb-w-6 eb-text-teal-700',
+            'cyan' => 'eb-h-6 eb-w-6 eb-text-cyan-700',
+            'sky' => 'eb-h-6 eb-w-6 eb-text-sky-700',
+            'indigo' => 'eb-h-6 eb-w-6 eb-text-indigo-700',
+            'violet' => 'eb-h-6 eb-w-6 eb-text-violet-700',
+            'purple' => 'eb-h-6 eb-w-6 eb-text-purple-700',
+            'fuchsia' => 'eb-h-6 eb-w-6 eb-text-fuchsia-700',
+            'pink' => 'eb-h-6 eb-w-6 eb-text-pink-700',
+            'rose' => 'eb-h-6 eb-w-6 eb-text-rose-700',
+            default => 'eb-h-6 eb-w-6 eb-text-eb-700',
         };
     }
 

@@ -7,6 +7,7 @@ return [
 
     'tailwind_breaking_points' => true,
 
+    // TODO: should only be applied if AlpineJS is loaded.
     'closable' => [
         'enabled' => true,
 

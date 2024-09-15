@@ -2,17 +2,17 @@
         'eb-border-l-6',
         'eb-top-0 eb-p-3 eb-z-50',
         'eb-sticky' => $configuration['fixed'],
-        $configuration['colors']
-    ]) x-data="envbar()" x-show="show">
+        $configuration['background']
+    ]) x-data="envbar()" x-show="show" id="envbar-{{ uniqid() }}">
     <div class="eb-flex eb-flex-wrap eb-items-center eb-ml-2 eb-gap-1">
         {{-- Environment --}}
         <div class="eb-inline-flex eb-items-center eb-gap-1">
-            <x-envbar::icons.laravel class="eb-h-6 eb-w-6 eb-text-green-700" />
+            <x-envbar::icons.laravel @class($configuration['icons']) />
             <p>@lang('envbar::messages.environment')</p>
             <x-envbar::badge>
                 Local
             </x-envbar::badge>
-            <x-envbar::icons.fork class="eb-h-6 eb-w-6 eb-text-green-700" />
+            <x-envbar::icons.fork @class($configuration['icons']) />
         </div>
         {{-- Branch --}}
         <div class="eb-flex eb-flex-row eb-items-center eb-gap-1">
@@ -23,7 +23,7 @@
         </div>
         {{-- Release --}}
         <div class="eb-inline-flex eb-items-center eb-gap-1">
-            <x-envbar::icons.tag class="eb-h-4 eb-w-4 eb-text-green-700" />
+            <x-envbar::icons.tag @class($configuration['icons']) />
             <p>@lang('envbar::messages.release')</p>
             <x-envbar::badge>v2.11.23</x-envbar::badge>
         </div>
