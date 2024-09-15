@@ -15,9 +15,9 @@
                 Baz
             </div>
             @if ($closable['enabled'])
-            <button type="button" x-on:click="close(@js($closable['timeout']))">
-                <x-envbar::icons.x-mark class="h-4 w-4" />
-            </button>
+                <button type="button" x-on:click="close(@js($closable['timeout']))">
+                    <x-envbar::icons.x-mark class="eb-h-4 eb-w-4" />
+                </button>
             @endif
         </div>
     </div>

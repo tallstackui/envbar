@@ -10,6 +10,10 @@ export default () => ({
     close(timeout = null) {
         this.show = false
 
-        localStorage.setItem('envbar::closed', String(Date.now() + 300000))
+        if (!timeout) {
+            return;
+        }
+
+        localStorage.setItem('envbar::closed', String(Date.now() + (timeout * 1000)))
     }
 })
