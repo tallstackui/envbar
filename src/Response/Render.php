@@ -15,7 +15,7 @@ class Render
      */
     public static function css(): Htmlable
     {
-        $css = file_get_contents(__DIR__.'/../../../dist/app.css');
+        $css = file_get_contents(__DIR__.'/../../dist/app.css');
 
         return new HtmlString(<<<HTML
         <style data-source="envbar-css">{$css}</style>
@@ -27,7 +27,7 @@ class Render
      */
     public static function js(): Htmlable
     {
-        $js = file_get_contents(__DIR__.'/../../../dist/app.js');
+        $js = file_get_contents(__DIR__.'/../../dist/app.js');
 
         return new HtmlString(<<<HTML
         <script data-source="envbar-js">{$js}</script>

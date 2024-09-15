@@ -33,7 +33,7 @@ class BaseComponentCompiler
     }
 
     /**
-     * Background, border and text colors.
+     * Get the background colors: border and text colors.
      */
     private function background(): string
     {
@@ -67,7 +67,7 @@ class BaseComponentCompiler
     }
 
     /**
-     * Icons size and colors.
+     * Get the icon colors: size and text.
      */
     private function icons(): string
     {
@@ -98,5 +98,13 @@ class BaseComponentCompiler
             'rose' => 'eb-h-6 eb-w-6 eb-text-rose-700',
             default => 'eb-h-6 eb-w-6 eb-text-eb-700',
         };
+    }
+
+    /**
+     * Determine if the EnvBar will use TailwindCSS Breaking Point feature.
+     */
+    private function tailwind_breaking_points(): bool
+    {
+        return file_exists(base_path('tailwind.config.js')) && config('envbar.tailwind_breaking_points');
     }
 }
