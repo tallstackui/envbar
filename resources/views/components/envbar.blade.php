@@ -8,7 +8,7 @@
         'eb-sticky' => $configuration['fixed'],
         $configuration['background']
     ]) x-data="envbar(@js($configuration))" x-show="show" id="envbar-{{ $id }}">
-    <div class="eb-flex eb-flex-wrap eb-items-center eb-ml-2 eb-gap-1">
+    <div class="eb-flex eb-flex-wrap eb-items-center eb-space-x-2 eb-gap-1">
         {{-- Environment --}}
         <div class="eb-inline-flex eb-items-center eb-gap-1">
             <x-envbar::icons.laravel @class($configuration['icons']) />
@@ -25,7 +25,7 @@
                 <x-envbar::badge>feat/foobar</x-envbar::badge>
             </div>
         </div>
-        {{-- Release --}}
+        {{-- Last Release --}}
         <div class="eb-inline-flex eb-items-center eb-gap-1">
             <x-envbar::icons.tag @class($configuration['icons']) />
             <p>@lang('envbar::messages.release')</p>

@@ -3,5 +3,5 @@
 return [
     'environment' => 'Environment:',
     'branch' => 'Branch:',
-    'release' => 'Release:',
+    'release' => 'Latest Release:',
 ];
