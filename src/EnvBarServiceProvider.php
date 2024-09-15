@@ -24,6 +24,6 @@ class EnvBarServiceProvider extends ServiceProvider
 
     private function registerMiddleware(): void
     {
-        $this->app[Kernel::class]->pushMiddleware(Injection::class);
+        $this->app[Kernel::class]->appendMiddlewareToGroup('web', Injection::class);
     }
 }

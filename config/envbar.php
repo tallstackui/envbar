@@ -22,9 +22,13 @@ return [
         '/telescope',
     ],
 
-    'on_mobile' => true,
+    'for_authenticated_users' => [
+        'enabled' => true,
 
-    'on_specific_browsers' => [],
+        'guard' => 'web',
+    ],
+
+    'on_mobile' => false,
 
     'providers' => [
         'github' => [
