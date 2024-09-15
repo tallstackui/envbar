@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3a47a7cee532f391ba5462e0a975b03b",
+    "content-hash": "b2a368a8950d5bf54350cd5011b8e548",
     "packages": [
         {
             "name": "brick/math",
@@ -5958,82 +5958,6 @@
             "time": "2024-09-03T15:00:28+00:00"
         },
         {
-            "name": "livewire/livewire",
-            "version": "v3.5.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/livewire/livewire.git",
-                "reference": "597a2808d8d3001cc3ed5ce89a6ebab00f83b80f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/597a2808d8d3001cc3ed5ce89a6ebab00f83b80f",
-                "reference": "597a2808d8d3001cc3ed5ce89a6ebab00f83b80f",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "^10.0|^11.0",
-                "illuminate/routing": "^10.0|^11.0",
-                "illuminate/support": "^10.0|^11.0",
-                "illuminate/validation": "^10.0|^11.0",
-                "laravel/prompts": "^0.1.24",
-                "league/mime-type-detection": "^1.9",
-                "php": "^8.1",
-                "symfony/console": "^6.0|^7.0",
-                "symfony/http-kernel": "^6.2|^7.0"
-            },
-            "require-dev": {
-                "calebporzio/sushi": "^2.1",
-                "laravel/framework": "^10.15.0|^11.0",
-                "mockery/mockery": "^1.3.1",
-                "orchestra/testbench": "^8.21.0|^9.0",
-                "orchestra/testbench-dusk": "^8.24|^9.1",
-                "phpunit/phpunit": "^10.4",
-                "psy/psysh": "^0.11.22|^0.12"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Livewire\\LivewireServiceProvider"
-                    ],
-                    "aliases": {
-                        "Livewire": "Livewire\\Livewire"
-                    }
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ],
-                "psr-4": {
-                    "Livewire\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Caleb Porzio",
-                    "email": "calebporzio@gmail.com"
-                }
-            ],
-            "description": "A front-end framework for Laravel.",
-            "support": {
-                "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v3.5.6"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/livewire",
-                    "type": "github"
-                }
-            ],
-            "time": "2024-08-19T11:52:18+00:00"
-        },
-        {
             "name": "myclabs/deep-copy",
             "version": "1.x-dev",
             "source": {
@@ -8564,120 +8488,6 @@
             "time": "2024-01-05T14:10:56+00:00"
         },
         {
-            "name": "tallstackui/tallstackui",
-            "version": "2.x-dev",
-            "dist": {
-                "type": "path",
-                "url": "/Users/aj/Workspace/tallstackui/tallstackui",
-                "reference": "97ca3a1a4c69be8ff344e740280684b4869eac17"
-            },
-            "require": {
-                "ext-zip": "*",
-                "illuminate/console": "^10.0|^11.0",
-                "illuminate/contracts": "^10.0|^11.0",
-                "illuminate/pagination": "^10.0|^11.0",
-                "illuminate/support": "^10.0|^11.0",
-                "illuminate/view": "^10.0|^11.0",
-                "livewire/livewire": "^3.4.9",
-                "php": "^8.1"
-            },
-            "require-dev": {
-                "larastan/larastan": "^2.7",
-                "laravel/pint": "^1.13",
-                "orchestra/testbench": "^8.0|^9.0",
-                "orchestra/testbench-dusk": "^8.0|^9.0",
-                "pestphp/pest": "^2.0",
-                "pestphp/pest-plugin-type-coverage": "^2.2",
-                "rector/rector": "^1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "TallStackUi\\TallStackUiServiceProvider"
-                    ],
-                    "aliases": {
-                        "TallStackUi": "TallStackUi\\Facades\\TallStackUi"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "TallStackUi\\": "src/"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "App\\": "vendor/orchestra/testbench-core/laravel/app",
-                    "Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "./vendor/bin/pest"
-                ],
-                "test:ci": [
-                    "CI=true ./vendor/bin/pest"
-                ],
-                "test:feature": [
-                    "vendor/bin/testbench view:clear",
-                    "./vendor/bin/pest --filter=Feature --parallel"
-                ],
-                "test:browser": [
-                    "./vendor/bin/pest --filter=Browser"
-                ],
-                "test:browser:ci": [
-                    "CI=true ./vendor/bin/pest --filter=Browser"
-                ],
-                "bench": [
-                    "vendor/bin/testbench"
-                ],
-                "type": [
-                    "./vendor/bin/pest --type-coverage"
-                ],
-                "format": [
-                    "./vendor/bin/pint",
-                    "npm run lint:fix"
-                ],
-                "rector": [
-                    "php ./vendor/bin/rector process --dry-run --config=rector.php"
-                ],
-                "analyse": [
-                    "./vendor/bin/phpstan analyse --memory-limit=2G"
-                ],
-                "ci": [
-                    "./vendor/bin/pint --test",
-                    "./vendor/bin/phpstan analyse --memory-limit=2G",
-                    "php ./vendor/bin/rector process --dry-run --config=rector.php",
-                    "./vendor/bin/testbench view:clear",
-                    "./vendor/bin/pest --filter=Feature --parallel --stop-on-failure",
-                    "./vendor/bin/testbench view:clear",
-                    "CI=true ./vendor/bin/pest --filter=Browser"
-                ],
-                "ci:analyse": [
-                    "./vendor/bin/pint --test",
-                    "./vendor/bin/phpstan analyse --memory-limit=2G",
-                    "php ./vendor/bin/rector process --dry-run --config=rector.php"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "AJ Meireles",
-                    "email": "alvaro.meireles@live.com"
-                }
-            ],
-            "description": "TallStackUI is a powerful suite of Blade components that elevate your workflow of Livewire applications.",
-            "transport-options": {
-                "relative": false
-            }
-        },
-        {
             "name": "theseer/tokenizer",
             "version": "1.2.3",
             "source": {
@@ -8787,9 +8597,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "tallstackui/tallstackui": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

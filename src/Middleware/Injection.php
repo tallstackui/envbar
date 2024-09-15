@@ -24,9 +24,10 @@ class Injection
 
         $renderer = app(Render::class);
 
-        $headPos = strripos($content, '</head>');
+        $headPos = strripos($content, '<head>');
+
         if ($headPos !== false) {
-            $content = substr($content, 0, $headPos).$renderer->style().substr($content, $headPos);
+            $content = substr($content, 0, $headPos).$renderer->css().substr($content, $headPos);
         }
 
         $bodyPos = strripos($content, '<body');

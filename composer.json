@@ -11,8 +11,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "laravel/framework": "^10.0|^11.0",
-        "tallstackui/tallstackui": "2.x-dev"
+        "laravel/framework": "^10.0|^11.0"
     },
     "require-dev": {
         "laravel/pint": "^1.17",
@@ -38,12 +37,6 @@
         "format": "./vendor/bin/pint",
         "analyse": "./vendor/bin/phpstan analyse --memory-limit=2G"
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "/Users/aj/Workspace/tallstackui/tallstackui"
-        }
-    ],
     "minimum-stability": "dev",
     "prefer-stable": false,
     "config": {

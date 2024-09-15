@@ -1,15 +1,14 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-
-export default defineConfig({
-    plugins: [
-        laravel({
-            buildDirectory: 'vendor/tallstackui/envbar',
-            input: [
-                'resources/css/app.css',
-                'resources/js/app.js'
-            ],
-            refresh: true,
-        }),
-    ],
-});
+/** @type {import('vite').UserConfig} */
+export default {
+    build: {
+        assetsDir: '',
+        rollupOptions: {
+            input: ['resources/js/app.js', 'resources/css/app.css'],
+            output: {
+                entryFileNames: '[name].js',
+                chunkFileNames: '[name].js',
+                assetFileNames: '[name].[ext]',
+            },
+        },
+    },
+};
