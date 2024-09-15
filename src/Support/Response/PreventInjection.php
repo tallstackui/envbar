@@ -19,7 +19,7 @@ readonly class PreventInjection
      */
     public function aborted(): bool
     {
-        if (! config('envbar.enabled') || app()->runningUnitTests()) {
+        if (! config('envbar.enabled') || (config('envbar.disable_on_tests') && app()->runningUnitTests())) {
             return true;
         }
 

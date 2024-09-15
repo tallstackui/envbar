@@ -3,6 +3,8 @@
 return [
     'enabled' => true,
 
+    'disable_on_tests' => false,
+
     'fixed' => true,
 
     'tailwind_breaking_points' => true,
