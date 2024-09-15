@@ -3,16 +3,14 @@
 namespace TallStackUi\EnvBar\Middleware;
 
 use Closure;
-use TallStackUi\EnvBar\Support\PreventInjection;
-use TallStackUi\EnvBar\Support\Render;
+use TallStackUi\EnvBar\Support\Response\PreventInjection;
+use TallStackUi\EnvBar\Support\Response\Render;
 
 class Injection
 {
     public function handle($request, Closure $next)
     {
-        $abort = app(PreventInjection::class, ['request' => $request])->aborted();
-
-        if ($abort) {
+        if (app(PreventInjection::class, ['request' => $request])->aborted()) {
             return $next($request);
         }
 

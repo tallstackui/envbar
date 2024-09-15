@@ -1,6 +1,6 @@
 <?php
 
-namespace TallStackUi\EnvBar\Support;
+namespace TallStackUi\EnvBar\Support\Response;
 
 use Symfony\Component\HttpFoundation\Response;
 

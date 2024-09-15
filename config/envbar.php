@@ -4,17 +4,10 @@ return [
     'enabled' => true,
 
     'environments' => [
-        'local',
-        'sandbox',
-        'staging',
-        // 'production'
-    ],
-
-    'colors' => [
         'local' => 'green',
         'sandbox' => 'yellow',
         'staging' => 'blue',
-        'production' => 'red',
+        // 'production' => 'red',
     ],
 
     'ignore_on' => [
@@ -32,10 +25,15 @@ return [
 
     'providers' => [
         'github' => [
-            'enabled' => true,
+            'repository' => env('ENVBAR_GITHUB_REPOSITORY'),
+            'username' => env('ENVBAR_GITHUB_USERNAME'),
+            'token' => env('ENVBAR_GITHUB_TOKEN'),
         ],
         'bitbucket' => [
-            'enabled' => true,
+            'workspace' => env('ENVBAR_BITBUCKET_WORKSPACE'),
+            'repository' => env('ENVBAR_BITBUCKET_REPOSITORY'),
+            'username' => env('ENVBAR_BITBUCKET_USERNAME'),
+            'token' => env('ENVBAR_BITBUCKET_TOKEN'),
         ],
     ],
 ];

@@ -1,6 +1,6 @@
 <?php
 
-namespace TallStackUi\EnvBar\Support;
+namespace TallStackUi\EnvBar\Support\Response;
 
 use Detection\MobileDetect;
 use Illuminate\Http\Request;
@@ -51,7 +51,7 @@ readonly class PreventInjection
 
     private function forEnvironments(): bool
     {
-        return ! in_array(app()->environment(), config('envbar.environments'));
+        return ! in_array(app()->environment(), array_keys(config('envbar.environments')));
     }
 
     private function forMobile(): bool
