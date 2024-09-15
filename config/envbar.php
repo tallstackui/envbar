@@ -19,8 +19,9 @@ return [
     ],
 
     'ignore_on' => [
-        '/horizon',
-        '/telescope',
+        'pulse/*',
+        'horizon/*',
+        'telescope/*',
     ],
 
     'for_authenticated_users' => [

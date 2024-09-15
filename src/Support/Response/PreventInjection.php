@@ -23,6 +23,10 @@ readonly class PreventInjection
             return true;
         }
 
+        if ($this->forRoutes()) {
+            return true;
+        }
+
         if ($this->forAuthenticatedUsers()) {
             return true;
         }
@@ -36,6 +40,12 @@ readonly class PreventInjection
         }
 
         return false;
+    }
+
+    private function forRoutes(): bool
+    {
+        return collect(config('envbar.ignore_on'))
+            ->contains(fn (string $route) => $this->request->is($route));
     }
 
     private function forAuthenticatedUsers(): bool
