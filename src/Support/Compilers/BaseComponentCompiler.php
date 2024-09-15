@@ -1,25 +1,25 @@
 <?php
 
-namespace TallStackUi\EnvBar\Support\Components;
+namespace TallStackUi\EnvBar\Support\Compilers;
 
-class CompileComponentConfigurations
+class BaseComponentCompiler
 {
     public function __invoke(): array
     {
-        $variables = [];
+        $variables = ['configuration'];
 
         foreach ([
-            'backgroundColor',
+            'background',
             'closable',
             'fixed',
         ] as $method) {
-            $variables[$method] = $this->{$method}();
+            $variables['configuration'][$method] = $this->{$method}();
         }
 
         return $variables;
     }
 
-    private function backgroundColor(): string
+    private function background(): string
     {
         $environments = config('envbar.environments');
 
@@ -46,6 +46,7 @@ class CompileComponentConfigurations
             'fuchsia' => 'eb-border-l-fuchsia-500 eb-bg-fuchsia-200',
             'pink' => 'eb-border-l-pink-500 eb-bg-pink-200',
             'rose' => 'eb-border-l-rose-500 eb-bg-rose-200',
+            'black' => 'eb-border-l-black eb-bg-black',
             default => 'eb-border-l-eb-500 eb-bg-eb-200',
         };
     }

@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\HtmlString;
 use Symfony\Component\HttpFoundation\Response;
-use TallStackUi\EnvBar\Support\Components\CompileComponentConfigurations;
+use TallStackUi\EnvBar\Support\Compilers\BaseComponentCompiler;
 
 class Render
 {
@@ -30,7 +30,9 @@ class Render
 
     public function component(): View
     {
-        return view('envbar::components.envbar', [...app(CompileComponentConfigurations::class)()]);
+        return view('envbar::components.envbar', [
+            ...app(BaseComponentCompiler::class)(),
+        ]);
     }
 
     public function handle(Response $response): Response

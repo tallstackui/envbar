@@ -11,6 +11,7 @@ return [
         'timeout' => null,
     ],
 
+    // TODO: we need to validate this
     'environments' => [
         'local' => 'green',
         'sandbox' => 'yellow',
