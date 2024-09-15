@@ -56,6 +56,6 @@ export default (configuration) => ({
             return;
         }
 
-        this.resolution = '3XL';
+        this.resolution = '> 2XL';
     }
 })
