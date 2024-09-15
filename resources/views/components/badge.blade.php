@@ -1,6 +1,11 @@
-<span @class([
-        'eb-inline-flex eb-items-center eb-rounded-full eb-px-2 eb-py-1 eb-text-sm eb-font-medium eb-ring-1 eb-ring-inset',
+<div @class([
+        'eb-text-sm eb-font-medium eb-px-2.5 eb-py-0.5 eb-mx-1.5 eb-rounded-xl eb-shadow-inner',
         $colors()
     ])>
-    {{ $text ?? $slot }}
-</span>
+    @if ($icon)
+        <div>
+            {{ $icon }}
+        </div>
+    @endif
+        <b>{{ $text ?? $slot }}</b>
+</div>
