@@ -15,10 +15,6 @@ abstract class BaseComponent extends Component
 
     public function render(): Closure
     {
-        return function (): View {
-            return $this->blade()->with([
-                'configuration' => $this->configuration = $this->attributes->get('configuration', []),
-            ]);
-        };
+        return fn (): View => $this->blade();
     }
 }
