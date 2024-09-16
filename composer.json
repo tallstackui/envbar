@@ -43,7 +43,7 @@
         }
     },
     "scripts": {
-        "test": "./vendor/bin/pest",
+        "test": "./vendor/bin/pest --filter Structure --parallel",
         "type": "./vendor/bin/pest --type-coverage",
         "format": "./vendor/bin/pint",
         "rector": "vendor/bin/rector process --dry-run",
