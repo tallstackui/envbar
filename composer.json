@@ -21,11 +21,18 @@
         "spatie/laravel-ray": "^1.37",
         "larastan/larastan": "^2.9",
         "orchestra/testbench": "^9.4",
-        "rector/rector": "^1.2"
+        "rector/rector": "^1.2",
+        "orchestra/testbench-dusk": "^9.7"
     },
     "autoload": {
         "psr-4": {
             "TallStackUi\\EnvBar\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\": "vendor/orchestra/testbench-core/laravel/app",
+            "Tests\\": "tests/"
         }
     },
     "extra": {
@@ -40,7 +47,12 @@
         "type": "./vendor/bin/pest --type-coverage",
         "format": "./vendor/bin/pint",
         "rector": "vendor/bin/rector process --dry-run",
-        "analyse": "./vendor/bin/phpstan analyse --memory-limit=2G"
+        "analyse": "./vendor/bin/phpstan analyse --memory-limit=2G",
+        "ci:analyse": [
+            "./vendor/bin/pest --type-coverage",
+            "./vendor/bin/pint --test",
+            "./vendor/bin/phpstan analyse --memory-limit=2G"
+        ]
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
