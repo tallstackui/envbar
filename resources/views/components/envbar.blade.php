@@ -42,7 +42,7 @@
             </div>
             @endif
             @if ($configuration['closable']['enabled'])
-                <button type="button" x-on:click="close()">
+                <button type="button" x-on:click="close()" dusk="envbar_close_button">
                     <x-envbar::icons.x class="eb-h-4 eb-w-4" />
                 </button>
             @endif

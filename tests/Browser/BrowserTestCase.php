@@ -13,6 +13,8 @@ use TallStackUi\EnvBar\EnvBarServiceProvider;
 
 class BrowserTestCase extends TestCase
 {
+    protected $loadEnvironmentVariables = false;
+
     public static function tmpPath(string $path = ''): string
     {
         return __DIR__."/tmp/{$path}";
@@ -45,12 +47,14 @@ class BrowserTestCase extends TestCase
                 'root' => self::tmpPath(),
             ]);
             $config->set('cache.default', 'array');
+            $config->set('envbar.disable_on_tests', false);
+            $config->set('envbar.environments', '*');
         });
     }
 
-    protected function getApplicationTimezone($app): string
+    protected function defineWebRoutes($router): void
     {
-        return (bool) getenv('GITHUB_ACTIONS') === false ? 'America/Sao_Paulo' : $app['config']['app.timezone'];
+        $router->view('/', 'welcome')->name('welcome');
     }
 
     protected function getPackageProviders($app): array
@@ -84,11 +88,6 @@ class BrowserTestCase extends TestCase
         File::ensureDirectoryExists(self::tmpPath());
     }
 
-    protected function paused(int $seconds = 3): int
-    {
-        return 1000 * $seconds;
-    }
-
     protected function setUp(): void
     {
         if (isset($_SERVER['CI'])) {
@@ -106,15 +105,6 @@ class BrowserTestCase extends TestCase
         });
 
         parent::setUp();
-    }
-
-    protected function skipOnGitHubActions(?string $message = null): void
-    {
-        if ((bool) getenv('GITHUB_ACTIONS') === false) {
-            return;
-        }
-
-        $this->markTestSkipped($message ?? 'For some unknown reason this test fails on GitHub Actions.');
     }
 
     protected function tearDown(): void

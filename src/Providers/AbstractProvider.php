@@ -42,9 +42,11 @@ abstract class AbstractProvider
             return;
         }
 
+        $title = __('envbar::internals.'.$provider, locale: 'en');
+
         foreach ($this->keys as $key) {
             if (blank($this->configuration->get($key))) {
-                throw new Exception("The GitHub provider requires the {$key} key to be set.");
+                throw new Exception("The $title provider requires the {$key} key to be set.");
             }
         }
     }

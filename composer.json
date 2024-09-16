@@ -21,8 +21,8 @@
         "spatie/laravel-ray": "^1.37",
         "larastan/larastan": "^2.9",
         "orchestra/testbench": "^9.4",
-        "rector/rector": "^1.2",
-        "orchestra/testbench-dusk": "^9.7"
+        "orchestra/testbench-dusk": "^9.7",
+        "rector/rector": "^1.2"
     },
     "autoload": {
         "psr-4": {
