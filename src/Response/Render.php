@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\HtmlString;
 use Symfony\Component\HttpFoundation\Response;
-use TallStackUi\EnvBar\Compilers\BaseComponentCompiler;
+use TallStackUi\EnvBar\Compilers\EnvBarComponentCompiler;
 
 class Render
 {
@@ -40,7 +40,8 @@ class Render
     public function component(): View
     {
         return view('envbar::components.envbar', [
-            ...app(BaseComponentCompiler::class)(),
+            'id' => uniqid(),
+            ...app(EnvBarComponentCompiler::class)(),
         ]);
     }
 

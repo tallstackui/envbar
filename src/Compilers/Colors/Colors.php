@@ -1,45 +1,17 @@
 <?php
 
-namespace TallStackUi\EnvBar\Compilers;
+namespace TallStackUi\EnvBar\Compilers\Colors;
 
-class BaseComponentCompiler
+class Colors
 {
-    public function __construct(private ?string $environment = null)
-    {
-        $this->environment = app()->environment();
-    }
-
-    /**
-     * Compiles the base component configurations.
-     *
-     * @return array|string[]
-     */
-    public function __invoke(): array
-    {
-        $variables = ['configuration'];
-
-        foreach ([
-            'fixed',
-            'icons',
-            'closable',
-            'background',
-            'warning_message',
-            'tailwind_breaking_points',
-        ] as $method) {
-            $variables['configuration'][$method] = method_exists($this, $method) ? $this->{$method}() : config("envbar.{$method}");
-        }
-
-        return $variables;
-    }
-
     /**
      * Get the background colors: border and text colors.
      */
-    private function background(): string
+    public static function background(): string
     {
         $environments = config('envbar.environments');
 
-        return match (data_get($environments, $this->environment, 'primary')) {
+        return match (data_get($environments, app()->environment(), 'primary')) {
             'green' => 'eb-border-l-green-500 eb-text-green-700 eb-bg-green-100',
             'yellow' => 'eb-border-l-yellow-500 eb-text-yellow-700 eb-bg-yellow-100',
             'blue' => 'eb-border-l-blue-500 eb-text-blue-700 eb-bg-blue-100',
@@ -69,11 +41,11 @@ class BaseComponentCompiler
     /**
      * Get the icon colors: size and text.
      */
-    private function icons(): string
+    public static function icons(): string
     {
         $environments = config('envbar.environments');
 
-        return match (data_get($environments, $this->environment, 'primary')) {
+        return match (data_get($environments, app()->environment(), 'primary')) {
             'green' => 'eb-h-6 eb-w-6 eb-text-green-700',
             'yellow' => 'eb-h-6 eb-w-6 eb-text-yellow-700',
             'blue' => 'eb-h-6 eb-w-6 eb-text-blue-700',
@@ -98,13 +70,5 @@ class BaseComponentCompiler
             'rose' => 'eb-h-6 eb-w-6 eb-text-rose-700',
             default => 'eb-h-6 eb-w-6 eb-text-eb-700',
         };
-    }
-
-    /**
-     * Determine if the EnvBar will use TailwindCSS Breaking Point feature.
-     */
-    private function tailwind_breaking_points(): bool
-    {
-        return file_exists(base_path('tailwind.config.js')) && config('envbar.tailwind_breaking_points');
     }
 }

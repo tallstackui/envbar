@@ -1,36 +1,33 @@
-@php
-    $id = uniqid();
-@endphp
-
 <div @class([
         'eb-border-l-6',
         'eb-top-0 eb-p-3 eb-z-50',
         'eb-sticky' => $configuration['fixed'],
-        $configuration['background']
+        $colors['background']
     ]) x-data="envbar(@js($configuration))" x-show="show" id="envbar-{{ $id }}">
     <div class="eb-flex eb-flex-wrap eb-items-center eb-space-x-2 eb-gap-1">
-        {{-- Environment --}}
         <div class="eb-inline-flex eb-items-center eb-gap-1">
-            <x-envbar::icons.laravel @class($configuration['icons']) />
+            <x-envbar::icons.laravel @class($colors['icons']) />
             <p>@lang('envbar::messages.environment')</p>
             <x-envbar::badge>
-                Local
+                {{ $environment['environment'] }}
             </x-envbar::badge>
-            <x-envbar::icons.fork @class($configuration['icons']) />
         </div>
-        {{-- Branch --}}
+        @if ($environment['branch'] !== null)
         <div class="eb-flex eb-flex-row eb-items-center eb-gap-1">
+            <x-envbar::icons.fork @class($colors['icons']) />
             <div class="eb-inline-flex eb-items-center">
                 <p>@lang('envbar::messages.branch')</p>
-                <x-envbar::badge>feat/foobar</x-envbar::badge>
+                <x-envbar::badge>{{ $environment['branch'] }}</x-envbar::badge>
             </div>
         </div>
-        {{-- Last Release --}}
+        @endif
+        @if ($environment['release'] !== null)
         <div class="eb-inline-flex eb-items-center eb-gap-1">
-            <x-envbar::icons.tag @class($configuration['icons']) />
+            <x-envbar::icons.tag @class($colors['icons']) />
             <p>@lang('envbar::messages.release')</p>
-            <x-envbar::badge>v2.11.23</x-envbar::badge>
+            <x-envbar::badge>{{ $environment['release'] }}</x-envbar::badge>
         </div>
+        @endif
         @if ($configuration['warning_message'])
             <x-envbar::icons.exclamation-circle />
             <div>

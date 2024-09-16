@@ -1,5 +1,7 @@
 <?php
 
+use TallStackUi\EnvBar\Providers;
+
 // TODO: set create default values using `env`.
 return [
     /*
@@ -60,6 +62,7 @@ return [
     | Closable Effect
     |--------------------------------------------------------------------------
     |
+    | Only work if the AlpineJS was loaded on the page.
     */
     'closable' => [
         /*
@@ -162,13 +165,10 @@ return [
     |--------------------------------------------------------------------------
     |
     | Determines the provider to be used to fetch the latest version of the application.
-    | All keys inside "providers" is the supported values:
-    | 1. Git (locally only), will hide release information.
-    | 2. GitHub
-    | 3. Bitbucket
+    | All keys inside "providers" is the supported values: github, bitbucket.
     |
     */
-    'provider' => 'git',
+    'provider' => null,
 
     /*
     |--------------------------------------------------------------------------
