@@ -2,6 +2,7 @@
 
 namespace TallStackUi\EnvBar\Response;
 
+use Exception;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\HtmlString;
@@ -36,6 +37,8 @@ class Render
 
     /**
      * Get the EnvBar component.
+     *
+     * @throws Exception
      */
     public function component(): View
     {

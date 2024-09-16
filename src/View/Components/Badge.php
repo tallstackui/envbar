@@ -16,13 +16,15 @@ class Badge extends BaseComponent
 
     public function blade(): View
     {
-        return view('envbar::components.badge');
+        return view('envbar::components.badge', [
+            'color' => $this->colors()
+        ]);
     }
 
     /**
      * Set the colors.
      */
-    public function colors(): string
+    private function colors(): string
     {
         return match (data_get(config('envbar.environments'), app()->environment(), 'primary')) {
             'green' => 'eb-text-green-800 eb-bg-green-300',

@@ -70,9 +70,7 @@ readonly class PreventInjection
      */
     private function forEnvironments(): bool
     {
-        $environments = config('envbar.environments');
-
-        if ($environments === '*') {
+        if (($environments = config('envbar.environments')) === '*') {
             return false;
         }
 
@@ -88,6 +86,6 @@ readonly class PreventInjection
             return false;
         }
 
-        return rescue(fn () => (new MobileDetect)->isMobile(), false);
+        return rescue(fn () => (new MobileDetect)->isMobile(), false, false);
     }
 }

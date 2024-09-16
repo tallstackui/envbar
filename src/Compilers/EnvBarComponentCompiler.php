@@ -8,6 +8,9 @@ use TallStackUi\EnvBar\Providers\BitBucketProvider;
 use TallStackUi\EnvBar\Providers\GitHubProvider;
 use TallStackUi\EnvBar\Providers\GitProvider;
 
+// The idea of this class is to be a class that
+// provides configurations for the component,
+// since the component is used as anonymous.
 class EnvBarComponentCompiler
 {
     /**
