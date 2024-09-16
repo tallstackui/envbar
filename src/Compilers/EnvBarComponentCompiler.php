@@ -25,6 +25,7 @@ class EnvBarComponentCompiler
         $variables = ['configuration', 'colors', 'environment'];
 
         foreach ([
+            'size',
             'fixed',
             'closable',
             'warning_message',

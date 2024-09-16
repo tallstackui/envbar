@@ -1,6 +1,11 @@
 <div @class([
         'eb-border-l-6',
-        'eb-top-0 eb-p-3 eb-z-50',
+        'eb-top-0 eb-z-50',
+        'eb-p-0.5' => $configuration['size'] === 'xs',
+        'eb-p-1' => $configuration['size'] === 'sm',
+        'eb-p-3' => $configuration['size'] === 'md',
+        'eb-p-4' => $configuration['size'] === 'lg',
+        'eb-p-5' => $configuration['size'] === 'xl',
         'eb-sticky' => $configuration['fixed'],
         $colors['background']
     ]) x-data="envbar(@js($configuration))" x-show="show" id="envbar-{{ $id }}">
@@ -8,7 +13,7 @@
         <div class="eb-inline-flex eb-items-center eb-gap-1">
             <x-envbar::icons.laravel @class($colors['icons']) />
             <p>@lang('envbar::messages.environment')</p>
-            <x-envbar::badge>
+            <x-envbar::badge :size="$configuration['size']">
                 {{ $environment['environment'] }}
             </x-envbar::badge>
         </div>
@@ -17,7 +22,7 @@
             <x-envbar::icons.fork @class($colors['icons']) />
             <div class="eb-inline-flex eb-items-center">
                 <p>@lang('envbar::messages.branch')</p>
-                <x-envbar::badge>{{ $environment['branch'] }}</x-envbar::badge>
+                <x-envbar::badge :size="$configuration['size']">{{ $environment['branch'] }}</x-envbar::badge>
             </div>
         </div>
         @endif
@@ -25,7 +30,7 @@
         <div class="eb-inline-flex eb-items-center eb-gap-1">
             <x-envbar::icons.tag @class($colors['icons']) />
             <p>@lang('envbar::messages.release')</p>
-            <x-envbar::badge>{{ $environment['release'] }}</x-envbar::badge>
+            <x-envbar::badge :size="$configuration['size']">{{ $environment['release'] }}</x-envbar::badge>
         </div>
         @endif
         @if ($configuration['warning_message'])
@@ -38,7 +43,7 @@
         <div class="eb-flex eb-items-center eb-absolute eb-right-2" id="envbar-{{ $id }}-right-side">
             @if ($configuration['tailwind_breaking_points'])
             <div class="eb-items-center eb-gap-1">
-                <x-envbar::badge><span x-text="resolution"></span></x-envbar::badge>
+                <x-envbar::badge :size="$configuration['size']"><span x-text="resolution"></span></x-envbar::badge>
             </div>
             @endif
             @if ($configuration['closable']['enabled'])

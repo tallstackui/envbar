@@ -26,6 +26,16 @@ return [
     | Fixed
     |--------------------------------------------------------------------------
     |
+    | Determines the size of the EnvBar. Allowed: xs, sm, md, lg, xl.
+    |
+    */
+    'size' => env('ENVBAR_SIZE', 'md'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Fixed
+    |--------------------------------------------------------------------------
+    |
     | Determines if the EnvBar will be displayed as fixed on top.
     |
     */

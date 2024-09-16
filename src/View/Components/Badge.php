@@ -9,9 +9,16 @@ class Badge extends BaseComponent
 {
     public function __construct(
         public ?string $text = null,
+        public ?string $size = null,
         public ComponentSlot|string|null $icon = null,
     ) {
-        //
+        $this->size = match ($this->size) {
+            'xs' => 'xs',
+            'sm' => 'sm',
+            'lg' => 'lg',
+            'xl' => 'xl',
+            default => 'md',
+        };
     }
 
     public function blade(): View
