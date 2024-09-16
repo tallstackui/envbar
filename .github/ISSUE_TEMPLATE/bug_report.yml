@@ -1,5 +1,5 @@
 name: Bug Report
-description: Report an issue or bug with the TallStackU EnvBar
+description: Report an issue or bug with the TallStackUi EnvBar
 title: "[Bug]: "
 labels: ["bug"]
 assignees: devajmeireles
@@ -25,7 +25,7 @@ body:
     validations:
       required: true
   - type: input
-    id: repository
+    id: public-repository
     attributes:
       label: Public Repository
       description: If possible, please provide a public repository that reproduces the issue.
