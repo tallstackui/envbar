@@ -49,7 +49,7 @@
         "rector": "vendor/bin/rector process --dry-run",
         "analyse": "./vendor/bin/phpstan analyse --memory-limit=2G",
         "ci:analyse": [
-            "./vendor/bin/pest --type-coverage",
+            "./vendor/bin/pest --type-coverage --min=100",
             "./vendor/bin/pint --test",
             "./vendor/bin/phpstan analyse --memory-limit=2G"
         ]

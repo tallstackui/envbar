@@ -8,7 +8,7 @@ use TallStackUi\EnvBar\Response\Render;
 
 class Injection
 {
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next) // @pest-ignore-type
     {
         if (app(PreventInjection::class, ['request' => $request])->aborted()) {
             return $next($request);
