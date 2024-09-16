@@ -1,11 +1,14 @@
 export default (configuration) => ({
-    show: true,
-    resolution: '',
     init() {
-        const closedAt = localStorage.getItem('envbar::closed')
+        const closedAt = localStorage.getItem('envbar::closed');
 
         if (closedAt && Date.now() < parseInt(closedAt)) {
-            this.show = false
+            this.element().style.display = 'none';
+        }
+
+        // We remove the storage item if the time has passed
+        if (closedAt && Date.now() > parseInt(closedAt)) {
+            localStorage.removeItem('envbar::closed');
         }
 
         if (Boolean(configuration.tailwind_breaking_points) === true) {
@@ -14,48 +17,55 @@ export default (configuration) => ({
             window.addEventListener('resize', () => this.breakpoint());
         }
     },
+
     close() {
         const timeout = configuration.closable.timeout ?? null;
 
-        this.show = false
+        this.element().style.display = 'none';
 
-        localStorage.removeItem('envbar::closed')
+        localStorage.removeItem('envbar::closed');
 
         if (!timeout) {
             return;
         }
 
-        localStorage.setItem('envbar::closed', String(Date.now() + (parseInt(timeout) * 1000)))
+        localStorage.setItem('envbar::closed', String(Date.now() + parseInt(timeout) * 60000));
     },
-    breakpoint() {
-        if (window.innerWidth < 640) {
-            this.resolution = 'SM';
 
-            return;
+    breakpoint () {
+        const width = window.innerWidth;
+        const span = this.element('resolution');
+
+        if (width < 640) {
+            return span.innerText = 'SM';
         }
 
-        if (window.innerWidth >= 640 && window.innerWidth < 768) {
-            this.resolution = 'MD';
-
-            return;
+        if (width >= 640 && width < 768) {
+            return span.innerText = 'MD';
         }
 
-        if (window.innerWidth >= 768 && window.innerWidth < 1024) {
-            this.resolution = 'LG';
-
-            return;
-        }
-        if (window.innerWidth >= 1024 && window.innerWidth < 1280) {
-            this.resolution = 'XL';
-
-            return;
-        }
-        if (window.innerWidth >= 1280 && window.innerWidth < 1536) {
-            this.resolution = '2XL';
-
-            return;
+        if (width >= 768 && width < 1024) {
+            return span.innerText = 'LG';
         }
 
-        this.resolution = '> 2XL';
-    }
+        if (width >= 1024 && width < 1280) {
+            return span.innerText = 'XL';
+        }
+
+        if (width >= 1280 && width < 1536) {
+            return span.innerText = '2XL';
+        }
+
+        return span.innerText = '> 2XL';
+    },
+
+    element (what = '') {
+        let id = `envbar`;
+
+        if (what) {
+            id += `-${what}`;
+        }
+
+        return document.getElementById(id);
+    },
 })

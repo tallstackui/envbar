@@ -47,8 +47,8 @@ return [
     |--------------------------------------------------------------------------
     |
     | Determines if the EnvBar will display the Tailwind CSS breaking points.
-    | It will only work if the AlpineJS was loaded on the page and also if the
-    | Tailwind CSS configuration file (tailwind.config.js) exists on the base path.
+    | It will only work if the Tailwind CSS configuration file (tailwind.config.js)
+    | exists on the base path and its value is set to true.
     |
     */
     'tailwind_breaking_points' => env('ENVBAR_TAILWIND_BREAKING_POINTS', true),
@@ -69,7 +69,6 @@ return [
     | Closable Effect
     |--------------------------------------------------------------------------
     |
-    | Only work if the AlpineJS was loaded on the page.
     */
     'closable' => [
         /*
@@ -87,7 +86,7 @@ return [
         | Timeout
         |--------------------------------------------------------------------------
         |
-        | When set, the EnvBar will wait the set seconds to appear again.
+        | When set, the EnvBar will wait the set minutes to appear again.
         |
         */
         'timeout' => env('ENVBAR_CLOSABLE_TIMEOUT'),

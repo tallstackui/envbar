@@ -8,7 +8,7 @@
         'eb-p-5' => $configuration['size'] === 'xl',
         'eb-sticky' => $configuration['fixed'],
         $colors['background']
-    ]) x-data="envbar(@js($configuration))" x-show="show" id="envbar-{{ $id }}">
+    ]) id="envbar">
     <div class="eb-flex eb-flex-wrap eb-items-center eb-space-x-1 eb-gap-1">
         <div class="eb-inline-flex eb-items-center eb-gap-1">
             <x-envbar::icons.laravel @class($colors['icons']) />
@@ -40,17 +40,26 @@
             </div>
         @endif
         {{-- Right Side --}}
-        <div class="eb-flex eb-items-center eb-absolute eb-right-2" id="envbar-{{ $id }}-right-side">
+        <div class="eb-flex eb-items-center eb-absolute eb-right-2">
             @if ($configuration['tailwind_breaking_points'])
             <div class="eb-items-center eb-gap-1">
-                <x-envbar::badge :size="$configuration['size']"><span x-text="resolution"></span></x-envbar::badge>
+                <x-envbar::badge :size="$configuration['size']"><span id="envbar-resolution"></span></x-envbar::badge>
             </div>
             @endif
             @if ($configuration['closable']['enabled'])
-                <button type="button" x-on:click="close()" dusk="envbar_close_button">
+                <button onclick="window.hide()" dusk="envbar_close_button">
                     <x-envbar::icons.x class="eb-h-4 eb-w-4" />
                 </button>
             @endif
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => window.$envbar(@js($configuration)).init());
+    document.addEventListener('livewire:navigated', () => window.$envbar(@js($configuration)).init());
+
+    (function() {
+        window.hide = () => window.$envbar(@js($configuration)).close();
+    })();
+</script>

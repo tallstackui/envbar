@@ -23,9 +23,7 @@ class Badge extends BaseComponent
 
     public function blade(): View
     {
-        return view('envbar::components.badge', [
-            'color' => $this->colors()
-        ]);
+        return view('envbar::components.badge', ['color' => $this->colors()]);
     }
 
     /**
