@@ -16,8 +16,8 @@
     },
     "require-dev": {
         "laravel/pint": "^1.17",
-        "pestphp/pest": "^3.0",
-        "pestphp/pest-plugin-type-coverage": "^3.0",
+        "pestphp/pest": "^2.0|^3.0",
+        "pestphp/pest-plugin-type-coverage": "^2.0|^3.0",
         "spatie/laravel-ray": "^1.37",
         "larastan/larastan": "^2.9",
         "orchestra/testbench": "^8.0|^9.0",
