@@ -44,7 +44,7 @@
     },
     "scripts": {
         "test": "./vendor/bin/pest --filter Structure --parallel",
-        "type": "./vendor/bin/pest --type-coverage",
+        "type": "./vendor/bin/pest --type-coverage --min=100",
         "format": "./vendor/bin/pint",
         "rector": "vendor/bin/rector process --dry-run",
         "analyse": "./vendor/bin/phpstan analyse --memory-limit=2G",
