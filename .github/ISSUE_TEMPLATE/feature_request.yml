@@ -1,0 +1,33 @@
+name: Feature Request
+description: Request a new feature to the TallStackUi EnvBar
+title: "[Feature Request]: "
+labels: ["feature request"]
+assignees: devajmeireles
+body:
+  - type: textarea
+    id: suggestion-theme
+    attributes:
+      label: Suggestion Theme
+      description: Describe the main theme of your suggestion
+    validations:
+      required: true
+  - type: textarea
+    id: main-benefits
+    attributes:
+      label: Main Benefits
+      description: We would like to understand what the main benefits of your suggestion would be.
+    validations:
+      required: true
+  - type: input
+    id: source-of-the-suggestion
+    attributes:
+      label: Source of the Suggestion
+      description: Is your suggestion based on another library? If yes, say which one.
+      placeholder: Insert the link to the website, docs or repository.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Use this field to provide any other notes that you feel might be relevant to the suggestion, like image or video.
+    validations:
+      required: false

@@ -1,0 +1,63 @@
+name: Bug Report
+description: Report an issue or bug with the TallStackU EnvBar
+title: "[Bug]: "
+labels: ["bug"]
+assignees: devajmeireles
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We're sorry to hear you have a problem. Can you help us solve it by providing the following details.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What Happened
+      description: What did you expect to happen?
+      placeholder: When I open the welcome page I get an error
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: How to Reproduce
+      description: How did this occur, please add any config values used and provide a set of reliable steps if possible.
+      placeholder: Install a fresh Laravel app, install TallStackUi EnvBar, visit the page
+    validations:
+      required: true
+  - type: input
+    id: repository
+    attributes:
+      label: Public Repository
+      description: If possible, please provide a public repository that reproduces the issue.
+      placeholder: https://github.com/your-username/repository
+  - type: input
+    id: laravel-version
+    attributes:
+      label: Laravel Version
+      description: What version of Laravel are you running? Please be as specific as possible
+      placeholder: For example, 10.30.0
+    validations:
+      required: true
+  - type: input
+    id: envbar-version
+    attributes:
+      label: TallStackUi EnvBar Version
+      description: What version of our Package are you running? Please be as specific as possible
+      placeholder: For example, 1.0.0
+    validations:
+      required: true
+  - type: input
+    id: php-version
+    attributes:
+      label: PHP Version
+      description: What version of PHP are you running? Please be as specific as possible
+      placeholder: For example, 8.1.20
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Use this field to provide any other notes that you feel might be relevant to the issue.
+    validations:
+      required: false
