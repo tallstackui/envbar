@@ -12,7 +12,7 @@ use Tests\Browser\BrowserTestCase;
 class GitHubProviderTest extends BrowserTestCase
 {
     #[Test]
-    public function see_release()
+    public function see_release(): void
     {
         $this->beforeServingApplication(function ($app, Repository $config): void {
             Cache::shouldReceive('remember')->andReturn('v1.0.0');
@@ -36,7 +36,7 @@ class GitHubProviderTest extends BrowserTestCase
     #[Test]
     #[TestWith(['', 'foo/bar'])]
     #[TestWith(['foo', ''])]
-    public function throw_exception_when_parameters_is_empty(string $token, string $repository)
+    public function throw_exception_when_parameters_is_empty(string $token, string $repository): void
     {
         $this->beforeServingApplication(function ($app, Repository $config) use ($token, $repository): void {
             Cache::shouldReceive('remember')->andReturn('v1.0.0');
