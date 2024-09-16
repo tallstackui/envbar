@@ -1,8 +1,5 @@
 <?php
 
-use TallStackUi\EnvBar\Providers;
-
-// TODO: set create default values using `env`.
 return [
     /*
     |--------------------------------------------------------------------------
@@ -12,7 +9,7 @@ return [
     | Determines if the EnvBar is enabled.
     |
     */
-    'enabled' => true,
+    'enabled' => env('ENVBAR_ENABLED', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +19,7 @@ return [
     | Determines if the EnvBar should be disabled when running tests.
     |
     */
-    'disable_on_tests' => false,
+    'disable_on_tests' => env('ENVBAR_DISABLE_ON_TESTS', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -32,7 +29,7 @@ return [
     | Determines if the EnvBar will be displayed as fixed on top.
     |
     */
-    'fixed' => true,
+    'fixed' => env('ENVBAR_FIXED', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -44,7 +41,7 @@ return [
     | Tailwind CSS configuration file (tailwind.config.js) exists on the base path.
     |
     */
-    'tailwind_breaking_points' => true,
+    'tailwind_breaking_points' => env('ENVBAR_TAILWIND_BREAKING_POINTS', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,7 +52,7 @@ return [
     | Behind the scenes, it will be applied using {!! !!} to allow HTML content.
     |
     */
-    'warning_message' => null,
+    'warning_message' => env('ENVBAR_WARNING_MESSAGE'),
 
     /*
     |--------------------------------------------------------------------------
@@ -73,7 +70,7 @@ return [
         | Controls if the closable effect is enabled.
         |
         */
-        'enabled' => true,
+        'enabled' => env('ENVBAR_CLOSABLE_ENABLED', true),
 
         /*
         |--------------------------------------------------------------------------
@@ -83,7 +80,7 @@ return [
         | When set, the EnvBar will wait the set seconds to appear again.
         |
         */
-        'timeout' => null,
+        'timeout' => env('ENVBAR_CLOSABLE_TIMEOUT'),
     ],
 
     /*
@@ -136,7 +133,7 @@ return [
         | Controls the status.
         |
         */
-        'enabled' => true,
+        'enabled' => env('ENVBAR_FOR_AUTHENTICATED_USERS_ENABLED', false),
 
         /*
         |--------------------------------------------------------------------------
@@ -157,7 +154,7 @@ return [
     | Allows you to do not display the EnvBar on mobile devices.
     |
     */
-    'on_mobile' => false,
+    'on_mobile' => env('ENVBAR_ON_MOBILE', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -168,7 +165,7 @@ return [
     | All keys inside "providers" is the supported values: github, bitbucket.
     |
     */
-    'provider' => null,
+    'provider' => env('ENVBAR_PROVIDER'),
 
     /*
     |--------------------------------------------------------------------------
@@ -180,15 +177,15 @@ return [
     */
     'providers' => [
         'github' => [
-            'token' => null,
-            'repository' => null,
-            'cached_for' => 1,
+            'token' => env('ENVBAR_GITHUB_TOKEN'),
+            'repository' => env('ENVBAR_GITHUB_REPOSITORY'),
+            'cached_for' => env('ENVBAR_GITHUB_CACHED_FOR', 1),
         ],
 
         'bitbucket' => [
-            'token' => null,
-            'repository' => null,
-            'cached_for' => 1,
+            'token' => env('ENVBAR_BITBUCKET_TOKEN'),
+            'repository' => env('ENVBAR_BITBUCKET_REPOSITORY'),
+            'cached_for' => env('ENVBAR_BITBUCKET_CACHED_FOR', 1),
         ],
     ],
 ];
