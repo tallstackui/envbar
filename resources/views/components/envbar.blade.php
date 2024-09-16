@@ -4,7 +4,7 @@
         'eb-sticky' => $configuration['fixed'],
         $colors['background']
     ]) x-data="envbar(@js($configuration))" x-show="show" id="envbar-{{ $id }}">
-    <div class="eb-flex eb-flex-wrap eb-items-center eb-space-x-2 eb-gap-1">
+    <div class="eb-flex eb-flex-wrap eb-items-center eb-space-x-1 eb-gap-1">
         <div class="eb-inline-flex eb-items-center eb-gap-1">
             <x-envbar::icons.laravel @class($colors['icons']) />
             <p>@lang('envbar::messages.environment')</p>

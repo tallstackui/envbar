@@ -70,7 +70,13 @@ readonly class PreventInjection
      */
     private function forEnvironments(): bool
     {
-        return ! in_array(app()->environment(), array_keys(config('envbar.environments') ?? []));
+        $environments = config('envbar.environments');
+
+        if ($environments === '*') {
+            return false;
+        }
+
+        return ! in_array(app()->environment(), array_keys($environments ?? []));
     }
 
     /**
