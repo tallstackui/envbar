@@ -180,16 +180,16 @@ return [
     */
     'providers' => [
         'github' => [
-            'repository' => null,
-            'username' => null,
             'token' => null,
+            'repository' => null,
+            'cached_for' => 1,
         ],
 
         'bitbucket' => [
+            'token' => null,
             'workspace' => null,
             'repository' => null,
-            'username' => null,
-            'token' => null,
+            'cached_for' => 1,
         ],
     ],
 ];

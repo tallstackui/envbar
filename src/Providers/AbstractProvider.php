@@ -10,7 +10,7 @@ abstract class AbstractProvider
     /** The required keys for the provider. */
     protected array $keys = [];
 
-    public function __construct(private ?Collection $configuration = null)
+    public function __construct(protected ?Collection $configuration = null)
     {
         $this->configuration = collect(config('envbar.providers.'.$this->provider()));
     }
@@ -47,5 +47,13 @@ abstract class AbstractProvider
                 throw new Exception("The GitHub provider requires the {$key} key to be set.");
             }
         }
+    }
+
+    /**
+     * Get the cache key for the provider.
+     */
+    public function cacheKey(): string
+    {
+        return 'envbar::'.$this->provider().'::release';
     }
 }
