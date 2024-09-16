@@ -187,7 +187,6 @@ return [
 
         'bitbucket' => [
             'token' => null,
-            'workspace' => null,
             'repository' => null,
             'cached_for' => 1,
         ],
