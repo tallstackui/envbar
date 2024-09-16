@@ -16,6 +16,8 @@ class EnvBarServiceProvider extends ServiceProvider
         $this->registerMiddleware();
 
         $this->registerComponents();
+
+        $this->registerCommands();
     }
 
     /**
@@ -50,5 +52,17 @@ class EnvBarServiceProvider extends ServiceProvider
                 $blade->component($class, $name);
             }
         });
+    }
+
+    /**
+     * Register the EnvBar commands.
+     */
+    public function registerCommands(): void
+    {
+        if (! $this->app->runningInConsole()) {
+            return;
+        }
+
+        $this->commands(Console\ClearCacheCommand::class);
     }
 }
