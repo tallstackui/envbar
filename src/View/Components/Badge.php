@@ -47,7 +47,7 @@ class Badge extends BaseComponent
             'fuchsia' => 'eb-text-fuchsia-800 eb-bg-fuchsia-200',
             'pink' => 'eb-text-pink-800 eb-bg-pink-200',
             'rose' => 'eb-text-rose-800 eb-bg-rose-200',
-            default => 'eb-text-eb-800 eb-bg-eb-200',
+            default => 'eb-text-envbar-800 eb-bg-envbar-200',
         };
     }
 }

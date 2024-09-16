@@ -34,7 +34,7 @@ class Colors
             'fuchsia' => 'eb-border-l-fuchsia-500 eb-text-fuchsia-700 eb-bg-fuchsia-100',
             'pink' => 'eb-border-l-pink-500 eb-text-pink-700 eb-bg-pink-100',
             'rose' => 'eb-border-l-rose-500 eb-text-rose-700 eb-bg-rose-100',
-            default => 'eb-border-l-eb-500 eb-text-green-700 eb-bg-eb-100',
+            default => 'eb-border-l-envbar-500 eb-text-envbar-700 eb-bg-envbar-100',
         };
     }
 
@@ -68,7 +68,7 @@ class Colors
             'fuchsia' => 'eb-h-6 eb-w-6 eb-text-fuchsia-700',
             'pink' => 'eb-h-6 eb-w-6 eb-text-pink-700',
             'rose' => 'eb-h-6 eb-w-6 eb-text-rose-700',
-            default => 'eb-h-6 eb-w-6 eb-text-eb-700',
+            default => 'eb-h-6 eb-w-6 eb-text-envbar-700',
         };
     }
 }

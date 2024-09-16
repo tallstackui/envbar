@@ -15,7 +15,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'eb': {
+        'envbar': {
           DEFAULT: '#acf73b',
           '50': '#f7ffe5',
           '100': '#edffc7',

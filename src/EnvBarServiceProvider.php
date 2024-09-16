@@ -30,6 +30,10 @@ class EnvBarServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/envbar.php', 'envbar');
 
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'envbar');
+
+        $this->publishes([
+            __DIR__.'/../config/envbar.php' => config_path('envbar.php'),
+        ], 'envbar-config');
     }
 
     /**
