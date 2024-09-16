@@ -48,6 +48,13 @@
         "format": "./vendor/bin/pint",
         "rector": "vendor/bin/rector process --dry-run",
         "analyse": "./vendor/bin/phpstan analyse --memory-limit=2G",
+        "ci": [
+            "./vendor/bin/pest --type-coverage --min=100",
+            "./vendor/bin/pint --test",
+            "./vendor/bin/phpstan analyse --memory-limit=2G",
+            "./vendor/bin/pest --filter Structure --parallel",
+            "CI=true ./vendor/bin/pest --filter Browser"
+        ],
         "ci:analyse": [
             "./vendor/bin/pest --type-coverage --min=100",
             "./vendor/bin/pint --test",
