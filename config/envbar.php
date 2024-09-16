@@ -95,7 +95,7 @@ return [
     |
     */
     'environments' => [
-        'local' => null,
+        'local' => 'green',
         'staging' => 'yellow',
         'sandbox' => 'orange',
         // 'production' => 'red',
