@@ -12,7 +12,7 @@
 
 ## Introduction
 
-**EnvBar** is a powerful environment bar injected at the top of the page, displaying useful information from the current environment..
+**EnvBar** is a powerful environment bar injected at the top of the page, displaying useful information from the current environment.
 
 ## Documentation
 
