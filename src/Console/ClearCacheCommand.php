@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Cache;
 
 class ClearCacheCommand extends Command
 {
-    public $signature = 'envbar:flush';
+    public $signature = 'envbar:flush-release';
 
     public $description = 'Flush the cache for the EnvBar releases.';
 
