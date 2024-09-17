@@ -3,5 +3,5 @@
 return [
     'environment' => 'Ambiente:',
     'branch' => 'Branch:',
-    'release' => 'Última Release:',
+    'release' => 'Última Release do <b>:Source:</b>',
 ];

@@ -43,6 +43,7 @@ class EnvBarComponentCompiler
         $variables['colors']['icons'] = Colors::icons();
 
         $variables['environment'] = [
+            'provider' => config('envbar.provider'),
             'branch' => app(GitProvider::class)->fetch(),
             'release' => $this->provider(),
             'environment' => app()->environment(),

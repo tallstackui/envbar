@@ -29,7 +29,7 @@
         @if ($environment['release'] !== null)
         <div class="eb-inline-flex eb-items-center eb-gap-1">
             <x-envbar::icons.tag @class($colors['icons']) />
-            <p>@lang('envbar::messages.release')</p>
+            <p>@lang('envbar::messages.release', ['source' => $environment['provider']])</p>
             <x-envbar::badge :size="$configuration['size']">{{ $environment['release'] }}</x-envbar::badge>
         </div>
         @endif

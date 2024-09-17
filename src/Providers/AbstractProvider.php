@@ -42,7 +42,7 @@ abstract class AbstractProvider
             return;
         }
 
-        $title = __('envbar::internals.'.$provider, locale: 'en');
+        $title = __('envbar::providers.'.$provider, locale: 'en');
 
         foreach ($this->keys as $key) {
             if (blank($this->configuration->get($key))) {
