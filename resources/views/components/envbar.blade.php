@@ -72,12 +72,14 @@
     (function() {
         window.hide = () => window.$envbar(@js($configuration)).close();
 
-        const dropdown = document.getElementById('envbar-dropdown');
+        @if ($configuration['links'] !== null)
+            const dropdown = document.getElementById('envbar-dropdown');
 
-        dropdown.addEventListener('change', () => {
-            window.open(dropdown.value, '_blank');
+            dropdown.addEventListener('change', () => {
+                window.open(dropdown.value, '_blank');
 
-            dropdown.value = '';
-        });
+                dropdown.value = '';
+            });
+        @endif
     })();
 </script>
