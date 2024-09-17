@@ -12,7 +12,7 @@
 
 ## Introduction
 
-<b>EnvBar</b> is a new package created by the TallStackUi team that serves to inject an environment bar at the top of the page to display information related to the current environment.
+**EnvBar** is a powerful environment bar injected at the top of the page, displaying useful information from the current environment..
 
 ## Documentation
 
