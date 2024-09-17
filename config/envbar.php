@@ -152,7 +152,7 @@ return [
         | Determine which guard should be used to check the authentication status.
         |
         */
-        'guard' => 'web',
+        'guard' => env('ENVBAR_FOR_AUTHENTICATED_USERS_GUARD', 'web'),
     ],
 
     /*
