@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Fluent;
 
-readonly class PreventInjection
+class PreventInjection
 {
-    public function __construct(private Request $request)
+    public function __construct(private readonly Request $request)
     {
         //
     }

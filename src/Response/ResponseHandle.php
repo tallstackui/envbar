@@ -4,9 +4,9 @@ namespace TallStackUi\EnvBar\Response;
 
 use Symfony\Component\HttpFoundation\Response;
 
-readonly class ResponseHandle
+class ResponseHandle
 {
-    public function __construct(private Render $render, private Response $response)
+    public function __construct(private readonly Render $render, private readonly Response $response)
     {
         //
     }
@@ -28,6 +28,12 @@ readonly class ResponseHandle
 
             if ($end !== false) {
                 $content = substr_replace($content, $this->render->component(), $end + 3, 0);
+            } else {
+                $end = strpos($content, '>', $start);
+
+                if ($end !== false) {
+                    $content = substr_replace($content, $this->render->component(), $end + 2, 0);
+                }
             }
         }
 

@@ -12,7 +12,3 @@ arch('should have all needed methods')
         'forEnvironments',
         'forAuthenticatedUsers',
     ]);
-
-arch('should be readonly')
-    ->expect(PreventInjection::class)
-    ->toBeReadonly();
