@@ -17,6 +17,7 @@ class EnvoyerProviderTest extends BrowserTestCase
         $this->beforeServingApplication(function ($app, Repository $config): void {
             Cache::shouldReceive('has')->andReturnTrue();
             Cache::shouldReceive('get')->andReturn('v3.0.0');
+            Cache::shouldReceive('pull')->andReturnNull();
 
             $config->set('envbar.provider', 'envoyer');
 
@@ -42,6 +43,7 @@ class EnvoyerProviderTest extends BrowserTestCase
         $this->beforeServingApplication(function ($app, Repository $config) use ($token, $project): void {
             Cache::shouldReceive('has')->andReturnTrue();
             Cache::shouldReceive('get')->andReturn('v3.0.0');
+            Cache::shouldReceive('pull')->andReturnNull();
 
             $config->set('envbar.provider', 'envoyer');
 

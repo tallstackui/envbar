@@ -17,6 +17,7 @@ class GitHubProviderTest extends BrowserTestCase
         $this->beforeServingApplication(function ($app, Repository $config): void {
             Cache::shouldReceive('has')->andReturnTrue();
             Cache::shouldReceive('get')->andReturn('v1.0.0');
+            Cache::shouldReceive('pull')->andReturnNull();
 
             $config->set('envbar.provider', 'github');
 
@@ -42,6 +43,7 @@ class GitHubProviderTest extends BrowserTestCase
         $this->beforeServingApplication(function ($app, Repository $config) use ($token, $repository): void {
             Cache::shouldReceive('has')->andReturnTrue();
             Cache::shouldReceive('get')->andReturn('v1.0.0');
+            Cache::shouldReceive('pull')->andReturnNull();
 
             $config->set('envbar.provider', 'github');
 

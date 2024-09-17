@@ -17,6 +17,7 @@ class BitBucketProviderTest extends BrowserTestCase
         $this->beforeServingApplication(function ($app, Repository $config): void {
             Cache::shouldReceive('has')->andReturnTrue();
             Cache::shouldReceive('get')->andReturn('v2.0.0');
+            Cache::shouldReceive('pull')->andReturnNull();
 
             $config->set('envbar.provider', 'bitbucket');
 
@@ -42,6 +43,7 @@ class BitBucketProviderTest extends BrowserTestCase
         $this->beforeServingApplication(function ($app, Repository $config) use ($token, $repository): void {
             Cache::shouldReceive('has')->andReturnTrue();
             Cache::shouldReceive('get')->andReturn('v2.0.0');
+            Cache::shouldReceive('pull')->andReturnNull();
 
             $config->set('envbar.provider', 'bitbucket');
 
