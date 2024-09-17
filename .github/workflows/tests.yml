@@ -58,6 +58,14 @@ jobs:
       - name: Setup Google Chrome
         run: vendor/bin/dusk-updater detect --auto-update
 
+      - name: Run Pint
+        run: pint
+
+      - name: Commit Linted Files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "[GitHub CI] fixes coding style"
+
       - name: Running Pint
         run: ./vendor/bin/pint --test
 
