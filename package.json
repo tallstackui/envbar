@@ -1,6 +1,6 @@
 {
   "name": "envbar",
-  "description": "",
+  "description": "TallStackUI EnvBar is a powerful environment bar injected at the top of the page, displaying useful information from the current environment.",
   "repository": "git@github.com:tallstackui/envbar.git",
   "author": "AJ Meireles <alvaro.meireles@live.com>",
   "license": "MIT",
