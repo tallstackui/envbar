@@ -77,5 +77,5 @@ Behind the scenes, this feature uses `Request::is` to check the current route.
 To avoid multiple requests to the git provider, the latest release is cached. If you want to clear the release cache, you can clear the entire application cache or run the following command to clear the release cache only:
 
 ```bash
-php artisan envbar:clear-release-cache
+php artisan envbar:flush-release-cache
 ```
