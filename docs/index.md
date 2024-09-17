@@ -30,19 +30,20 @@ Almost all the configuration is done through environment variables. Here are the
 6. `ENVBAR_WARNING_MESSAGE` - Allows you to set a warning message.
 7. `ENVBAR_CLOSABLE_ENABLED` - If the close button should be displayed. Default is `true`.
 8. `ENVBAR_CLOSABLE_TIMEOUT` - If after closing the bar, it should be displayed again after a certain time, in minutes. Default is `null`.
-9. `ENVBAR_FOR_AUTHENTICATED_USERS_ENABLED` - If the bar should be displayed only for authenticated users. Default is `false`. Requires a Gate to be defined with `envbar::view` ability, [similar we do with Horizon](https://laravel.com/docs/11.x/horizon#dashboard-authorization), but with `envbar::view` ability.
-10. `ENVBAR_FOR_AUTHENTICATED_USERS_GUARD` - The default guard to be used for authenticated users. Default is `web`.
-11. `ENVBAR_ON_MOBILE` - If the bar should be displayed on mobile. Default is `false`.
-12. `ENVBAR_PROVIDER` - The provider to be used for fetching the last release. Allowed: github, bitbucket, envoyer. Default is `null`.
-13. `ENVBAR_GITHUB_TOKEN` - GitHub token to be used for fetching the last release.
-14. `ENVBAR_GITHUB_REPOSITORY` - GitHub repository to be used for fetching the last release.
-15. `ENVBAR_GITHUB_DAYS_FOR_CACHE` - The time in days to cache the last release. Default is `1`.
-16. `ENVBAR_BITBUCKET_TOKEN` - BitBucket token to be used for fetching the last release.
-17. `ENVBAR_BITBUCKET_REPOSITORY` - BitBucket repository to be used for fetching the last release.
-18. `ENVBAR_BITBUCKET_DAYS_FOR_CACHE` - The time in days to cache the last release. Default is `1`. 
-19. `ENVBAR_ENVOYER_TOKEN` - Envoyer token to be used for fetching the last release. 
-20. `ENVBAR_ENVOYER_PROJECT_ID` - Envoyer project id to be used for fetching the last release. 
-21. `ENVBAR_ENVOYER_DAYS_FOR_CACHE` - The time in days to cache the last release. Default is `1`. 
+9. `ENVBAR_LINKS` - Set a list of links to be displayed on the right side of the EnvBar as a dropdown. Example: `ENVBAR_LINKS="https://google.com.br,https://github.com"`.
+10. `ENVBAR_FOR_AUTHENTICATED_USERS_ENABLED` - If the bar should be displayed only for authenticated users. Default is `false`. Requires a Gate to be defined with `envbar::view` ability, [similar we do with Horizon](https://laravel.com/docs/11.x/horizon#dashboard-authorization), but with `envbar::view` ability.
+11. `ENVBAR_FOR_AUTHENTICATED_USERS_GUARD` - The default guard to be used for authenticated users. Default is `web`.
+12. `ENVBAR_ON_MOBILE` - If the bar should be displayed on mobile. Default is `false`.
+13. `ENVBAR_PROVIDER` - The provider to be used for fetching the last release. Allowed: github, bitbucket, envoyer. Default is `null`.
+14. `ENVBAR_GITHUB_TOKEN` - GitHub token to be used for fetching the last release.
+15. `ENVBAR_GITHUB_REPOSITORY` - GitHub repository to be used for fetching the last release.
+16. `ENVBAR_GITHUB_DAYS_FOR_CACHE` - The time in days to cache the last release. Default is `1`.
+17. `ENVBAR_BITBUCKET_TOKEN` - BitBucket token to be used for fetching the last release.
+18. `ENVBAR_BITBUCKET_REPOSITORY` - BitBucket repository to be used for fetching the last release.
+19. `ENVBAR_BITBUCKET_DAYS_FOR_CACHE` - The time in days to cache the last release. Default is `1`. 
+20. `ENVBAR_ENVOYER_TOKEN` - Envoyer token to be used for fetching the last release. 
+21. `ENVBAR_ENVOYER_PROJECT_ID` - Envoyer project id to be used for fetching the last release. 
+22. `ENVBAR_ENVOYER_DAYS_FOR_CACHE` - The time in days to cache the last release. Default is `1`. 
 
 
 ### Other Configurations:
