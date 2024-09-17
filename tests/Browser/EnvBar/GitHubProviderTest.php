@@ -28,8 +28,8 @@ class GitHubProviderTest extends BrowserTestCase
 
         $this->browse(function (Browser $browser): void {
             $browser->visit('/')
-                ->waitForText('Latest Gitbub Release')
-                ->assertSee('Latest Gitbub Release')
+                ->waitForText('Latest Github Release')
+                ->assertSee('Latest Github Release')
                 ->assertSee('v1.0.0');
         });
     }
