@@ -41,6 +41,16 @@
         @endif
         {{-- Right Side --}}
         <div class="eb-flex eb-items-center eb-absolute eb-right-2">
+            @if ($configuration['links'] !== null)
+                <div class="eb-items-center eb-gap-1">
+                    <select id="envbar-dropdown" class="eb-w-full eb-rounded-md eb-border-0 eb-py-0.5 eb-pl-3 eb-pr-10 eb-text-gray-900 eb-ring-1 eb-ring-inset eb-ring-gray-300 focus:eb-outline-none focus:eb-ring-1 eb-ring-gray-300 focus:eb-ring-gray-300">
+                        <option value="">@lang('envbar::messages.select')</option>
+                        @foreach ($configuration['links'] as $link)
+                            <option value="{{ $link['url'] }}">{{ $link['name'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
             @if ($configuration['tailwind_breaking_points'])
             <div class="eb-items-center eb-gap-1">
                 <x-envbar::badge :size="$configuration['size']"><span id="envbar-resolution"></span></x-envbar::badge>
@@ -61,5 +71,13 @@
 
     (function() {
         window.hide = () => window.$envbar(@js($configuration)).close();
+
+        const dropdown = document.getElementById('envbar-dropdown');
+
+        dropdown.addEventListener('change', () => {
+            window.open(dropdown.value, '_blank');
+
+            dropdown.value = '';
+        });
     })();
 </script>

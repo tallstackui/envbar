@@ -28,6 +28,7 @@ class EnvBarComponentCompiler
         foreach ([
             'size',
             'fixed',
+            'links',
             'closable',
             'warning_message',
             'tailwind_breaking_points',
@@ -74,5 +75,27 @@ class EnvBarComponentCompiler
     private function tailwind_breaking_points(): bool
     {
         return file_exists(base_path('tailwind.config.js')) && config('envbar.tailwind_breaking_points');
+    }
+
+    /**
+     * Format the links what will be displayed on the dropdown.
+     */
+    private function links(): ?array
+    {
+        $links = collect(config('envbar.links'))->filter();
+
+        if ($links->isEmpty()) {
+            return null;
+        }
+
+        return $links->map(function (string $link) {
+            if (str_contains($link, '|')) {
+                [$name, $url] = explode('|', $link);
+
+                return ['name' => $name, 'url' => $url];
+            }
+
+            return $link;
+        })->toArray();
     }
 }
