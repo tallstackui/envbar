@@ -14,6 +14,10 @@
 
 **EnvBar** is a powerful environment bar injected at the top of the page, displaying useful information from the current environment.
 
+## Beta
+
+This package is currently in beta. While we don't anticipate breaking changes, we may introduce them in minor releases if necessary.
+
 ## Documentation
 
 [Temporary docs are hosted here in the repository, click here!](./docs/index.md)
