@@ -75,4 +75,18 @@ class IndexTest extends BrowserTestCase
                 ->assertDontSee('testing');
         });
     }
+
+    #[Test]
+    public function dropdown_works_successfully(): void
+    {
+        $this->beforeServingApplication(fn ($app, Repository $config) => $config->set('envbar.links', 'https://google.com'));
+
+        $this->browse(function (Browser $browser): void {
+            $browser->visit('/')
+                ->waitForText('Environment')
+                ->assertSee('Environment')
+                ->assertSee('testing')
+                ->assertSee('- Useful Links');
+        });
+    }
 }

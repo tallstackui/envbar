@@ -95,7 +95,7 @@ class EnvBarComponentCompiler
                 return ['name' => $name, 'url' => $url];
             }
 
-            return $link;
+            return ['name' => $link, 'url' => $link];
         })->toArray();
     }
 }
