@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\TestWith;
 use Tests\Browser\BrowserTestCase;
 
-class BitBucketProviderTest extends BrowserTestCase
+class EnvoyerProviderTest extends BrowserTestCase
 {
     #[Test]
     public function see_release(): void
@@ -17,42 +17,42 @@ class BitBucketProviderTest extends BrowserTestCase
         $this->beforeServingApplication(function ($app, Repository $config): void {
             Cache::shouldReceive('remember')->andReturn('v2.0.0');
 
-            $config->set('envbar.provider', 'bitbucket');
+            $config->set('envbar.provider', 'envoyer');
 
-            $config->set('envbar.providers.bitbucket', [
+            $config->set('envbar.providers.envoyer', [
                 'token' => 'tallstackui',
-                'repository' => 'tallstack/tallstack-ui',
+                'project_id' => '12345',
             ]);
         });
 
         $this->browse(function (Browser $browser): void {
             $browser->visit('/')
-                ->waitForText('Latest BitBucket Release')
-                ->assertSee('Latest BitBucket Release')
+                ->waitForText('Latest Envoyer Release')
+                ->assertSee('Latest Envoyer Release')
                 ->assertSee('v2.0.0');
         });
     }
 
     #[Test]
-    #[TestWith(['', 'foo/bar'])]
+    #[TestWith(['', '12345'])]
     #[TestWith(['foo', ''])]
-    public function throw_exception_when_parameters_is_empty(string $token, string $repository): void
+    public function throw_exception_when_parameters_is_empty(string $token, string $project): void
     {
-        $this->beforeServingApplication(function ($app, Repository $config) use ($token, $repository): void {
+        $this->beforeServingApplication(function ($app, Repository $config) use ($token, $project): void {
             Cache::shouldReceive('remember')->andReturn('v2.0.0');
 
-            $config->set('envbar.provider', 'bitbucket');
+            $config->set('envbar.provider', 'envoyer');
 
-            $config->set('envbar.providers.bitbucket', [
+            $config->set('envbar.providers.envoyer', [
                 'token' => $token,
-                'repository' => $repository,
+                'project_id' => $project,
             ]);
         });
 
         $this->browse(function (Browser $browser) use ($token): void {
             $expected = $token === '' ? 'token' : 'repository';
 
-            $browser->visit('/')->assertSee("The BitBucket provider requires the $expected key to be set.");
+            $browser->visit('/')->assertSee("The Envoyer provider requires the $expected key to be set.");
         });
     }
 }

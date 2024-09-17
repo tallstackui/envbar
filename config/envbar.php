@@ -171,7 +171,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Determines the provider to be used to fetch the latest version of the application.
-    | All keys inside "providers" is the supported values: github, bitbucket.
+    | All keys inside "providers" is the supported values: github, bitbucket, envoyer.
     |
     */
     'provider' => env('ENVBAR_PROVIDER'),
@@ -194,6 +194,12 @@ return [
         'bitbucket' => [
             'token' => env('ENVBAR_BITBUCKET_TOKEN'),
             'repository' => env('ENVBAR_BITBUCKET_REPOSITORY'),
+            'cached_for' => env('ENVBAR_BITBUCKET_CACHED_FOR', 1),
+        ],
+
+        'envoyer' => [
+            'token' => env('ENVBAR_ENVOYER_TOKEN', null),
+            'project_id' => env('ENVBAR_ENVOYER_PROJECT_ID', null),
             'cached_for' => env('ENVBAR_BITBUCKET_CACHED_FOR', 1),
         ],
     ],

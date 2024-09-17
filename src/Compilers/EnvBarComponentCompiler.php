@@ -5,6 +5,7 @@ namespace TallStackUi\EnvBar\Compilers;
 use Exception;
 use TallStackUi\EnvBar\Compilers\Colors\Colors;
 use TallStackUi\EnvBar\Providers\BitBucketProvider;
+use TallStackUi\EnvBar\Providers\EnvoyerProvider;
 use TallStackUi\EnvBar\Providers\GitHubProvider;
 use TallStackUi\EnvBar\Providers\GitProvider;
 
@@ -62,6 +63,7 @@ class EnvBarComponentCompiler
         return match (config('envbar.provider')) {
             'github' => app(GitHubProvider::class)->fetch(),
             'bitbucket' => app(BitBucketProvider::class)->fetch(),
+            'envoyer' => app(EnvoyerProvider::class)->fetch(),
             default => null,
         };
     }
