@@ -89,7 +89,7 @@ return [
         | When set, the EnvBar will wait the set minutes to appear again.
         |
         */
-        'timeout' => env('ENVBAR_CLOSABLE_TIMEOUT', 10),
+        'timeout' => env('ENVBAR_CLOSABLE_TIMEOUT'),
     ],
 
     /*
