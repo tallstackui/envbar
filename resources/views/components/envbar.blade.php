@@ -56,8 +56,8 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => window.$envbar(@js($configuration)).init());
-    document.addEventListener('livewire:navigated', () => window.$envbar(@js($configuration)).init());
+    document.addEventListener('DOMContentLoaded', () => window.$envbar(@js($configuration), @js($show)).init());
+    document.addEventListener('livewire:navigated', () => window.$envbar(@js($configuration), @js($show)).init());
 
     (function() {
         window.hide = () => window.$envbar(@js($configuration)).close();

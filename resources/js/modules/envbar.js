@@ -1,6 +1,12 @@
-export default (configuration) => ({
+export default (configuration, show) => ({
     init() {
-        const closedAt = localStorage.getItem('envbar::closed');
+        let closedAt = localStorage.getItem('envbar::closed');
+
+        if (show === true) {
+            closedAt = null;
+
+            localStorage.removeItem('envbar::closed');
+        }
 
         if (closedAt && Date.now() < parseInt(closedAt)) {
             this.element().style.display = 'none';

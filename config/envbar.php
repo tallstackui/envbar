@@ -89,7 +89,7 @@ return [
         | When set, the EnvBar will wait the set minutes to appear again.
         |
         */
-        'timeout' => env('ENVBAR_CLOSABLE_TIMEOUT'),
+        'timeout' => env('ENVBAR_CLOSABLE_TIMEOUT', 10),
     ],
 
     /*
@@ -188,19 +188,19 @@ return [
         'github' => [
             'token' => env('ENVBAR_GITHUB_TOKEN'),
             'repository' => env('ENVBAR_GITHUB_REPOSITORY'),
-            'cached_for' => env('ENVBAR_GITHUB_CACHED_FOR', 1),
+            'cached_for' => env('ENVBAR_GITHUB_DAYS_FOR_CACHE', 1),
         ],
 
         'bitbucket' => [
             'token' => env('ENVBAR_BITBUCKET_TOKEN'),
             'repository' => env('ENVBAR_BITBUCKET_REPOSITORY'),
-            'cached_for' => env('ENVBAR_BITBUCKET_CACHED_FOR', 1),
+            'cached_for' => env('ENVBAR_BITBUCKET_DAYS_FOR_CACHE', 1),
         ],
 
         'envoyer' => [
             'token' => env('ENVBAR_ENVOYER_TOKEN', null),
             'project_id' => env('ENVBAR_ENVOYER_PROJECT_ID', null),
-            'cached_for' => env('ENVBAR_BITBUCKET_CACHED_FOR', 1),
+            'cached_for' => env('ENVBAR_BITBUCKET_DAYS_FOR_CACHE', 1),
         ],
     ],
 ];

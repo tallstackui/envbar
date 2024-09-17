@@ -36,13 +36,13 @@ Almost all the configuration is done through environment variables. Here are the
 12. `ENVBAR_PROVIDER` - The provider to be used for fetching the last release. Allowed: github, bitbucket, envoyer. Default is `null`.
 13. `ENVBAR_GITHUB_TOKEN` - GitHub token to be used for fetching the last release.
 14. `ENVBAR_GITHUB_REPOSITORY` - GitHub repository to be used for fetching the last release.
-15. `ENVBAR_GITHUB_CACHED_FOR` - The time in days to cache the last release. Default is `1`.
+15. `ENVBAR_GITHUB_DAYS_FOR_CACHE` - The time in days to cache the last release. Default is `1`.
 16. `ENVBAR_BITBUCKET_TOKEN` - BitBucket token to be used for fetching the last release.
 17. `ENVBAR_BITBUCKET_REPOSITORY` - BitBucket repository to be used for fetching the last release.
-18. `ENVBAR_BITBUCKET_CACHED_FOR` - The time in days to cache the last release. Default is `1`. 
+18. `ENVBAR_BITBUCKET_DAYS_FOR_CACHE` - The time in days to cache the last release. Default is `1`. 
 19. `ENVBAR_ENVOYER_TOKEN` - Envoyer token to be used for fetching the last release. 
 20. `ENVBAR_ENVOYER_PROJECT_ID` - Envoyer project id to be used for fetching the last release. 
-21. `ENVBAR_BITBUCKET_CACHED_FOR` - The time in days to cache the last release. Default is `1`. 
+21. `ENVBAR_ENVOYER_DAYS_FOR_CACHE` - The time in days to cache the last release. Default is `1`. 
 
 
 ### Other Configurations:
@@ -72,10 +72,16 @@ You can ignore the EnvBar for specific pages:
 ```
 Behind the scenes, this feature uses `Request::is` to check the current route.
 
-### Clear Release Cache:
+### Commands:
 
-To avoid multiple requests to the git provider, the latest release is cached. If you want to clear the release cache, you can clear the entire application cache or run the following command to clear the release cache only:
+To avoid multiple requests to the git provider, the latest release is cached for `ENVBAR_*_CACHED_FOR` day(s). If you want to clear the release cache, you can clear the entire application cache or run the following command to clear the release cache only, without affecting the other cache:
 
 ```bash
-php artisan envbar:flush-release-cache
+php artisan envbar:flush
+```
+
+If you are using `ENVBAR_CLOSABLE_TIMEOUT` and you closed the EnvBar, you can use the command below to show the EnvBar again without waiting for the final minutes timeout to run out:
+
+```bash
+php artisan envbar:show
 ```

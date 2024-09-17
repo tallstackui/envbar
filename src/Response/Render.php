@@ -5,6 +5,7 @@ namespace TallStackUi\EnvBar\Response;
 use Exception;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\HtmlString;
 use Symfony\Component\HttpFoundation\Response;
 use TallStackUi\EnvBar\Compilers\EnvBarComponentCompiler;
@@ -44,6 +45,7 @@ class Render
     {
         return view('envbar::components.envbar', [
             'id' => uniqid(),
+            'show' => Cache::pull('envbar::show'),
             ...app(EnvBarComponentCompiler::class)(),
         ]);
     }

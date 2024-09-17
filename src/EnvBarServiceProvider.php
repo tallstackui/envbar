@@ -67,6 +67,9 @@ class EnvBarServiceProvider extends ServiceProvider
             return;
         }
 
-        $this->commands(Console\ClearCacheCommand::class);
+        $this->commands([
+            Console\ShowCommand::class,
+            Console\FlushCommand::class,
+        ]);
     }
 }
