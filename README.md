@@ -1,6 +1,6 @@
 # TallStackUi, EnvBar
 
-<p align="center"><a href="https://tallstackui.com" target="_blank"><img src="https://raw.githubusercontent.com/tallstackui/website/main/arts/tallstackui.svg" width="500"></a></p>
+<p align="center"><a href="https://tallstackui.com" target="_blank"><img src="./arts/envbar.png"></a></p>
 
 <p align="center">
     <img alt="Packagist Downloads" src="https://img.shields.io/packagist/dt/tallstackui/envbar?style=for-the-badge">
