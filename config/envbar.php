@@ -100,7 +100,7 @@ return [
     | Allows you to set useful links to be displayed in a dropdown on the EnvBar.
     |
     */
-    'links' => explode(',', env('ENVBAR_LINKS')),
+    'links' => explode(',', (string) env('ENVBAR_LINKS')),
 
     /*
     |--------------------------------------------------------------------------
