@@ -7,6 +7,7 @@
 *.php diff=php
 
 /tests                export-ignore
+/docs                 export-ignore
 composer.lock         export-ignore
 package.json          export-ignore
 package-lock.json     export-ignore
