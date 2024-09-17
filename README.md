@@ -16,7 +16,7 @@
 
 ## Documentation
 
-[Visit the TallStackUi website to see the documentation](https://tallstackui.com/docs)
+[Temporary docs are hosted here in the repository, click here!](./docs/index.md)
 
 ## Sponsorship
 
