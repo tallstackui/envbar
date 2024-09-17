@@ -14,6 +14,8 @@ class Injection
             return $next($request);
         }
 
-        return app(Render::class)->handle($next($request));
+        $response = $next($request);
+
+        return app(Render::class)->handle($response);
     }
 }

@@ -23,19 +23,7 @@ class ResponseHandle
             $content = substr_replace($content, $this->render->js(), $head + 6, 0);
         }
 
-        if (($start = strpos($content, '<body')) !== false) {
-            $end = strpos($content, '">', $start);
-
-            if ($end !== false) {
-                $content = substr_replace($content, $this->render->component(), $end + 3, 0);
-            } else {
-                $end = strpos($content, '>', $start);
-
-                if ($end !== false) {
-                    $content = substr_replace($content, $this->render->component(), $end + 2, 0);
-                }
-            }
-        }
+        $content = preg_replace('/(<body[^>]*>)/i', '$1'.$this->render->component(), $content);
 
         return $this->response->setContent($content);
     }
