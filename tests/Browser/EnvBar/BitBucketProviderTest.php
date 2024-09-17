@@ -15,7 +15,8 @@ class BitBucketProviderTest extends BrowserTestCase
     public function see_release(): void
     {
         $this->beforeServingApplication(function ($app, Repository $config): void {
-            Cache::shouldReceive('remember')->andReturn('v2.0.0');
+            Cache::shouldReceive('has')->andReturnTrue();
+            Cache::shouldReceive('get')->andReturn('v2.0.0');
 
             $config->set('envbar.provider', 'bitbucket');
 
@@ -27,8 +28,8 @@ class BitBucketProviderTest extends BrowserTestCase
 
         $this->browse(function (Browser $browser): void {
             $browser->visit('/')
-                ->waitForText('Latest BitBucket Release')
-                ->assertSee('Latest BitBucket Release')
+                ->waitForText('Latest Bitbucket Release')
+                ->assertSee('Latest Bitbucket Release')
                 ->assertSee('v2.0.0');
         });
     }
@@ -39,7 +40,8 @@ class BitBucketProviderTest extends BrowserTestCase
     public function throw_exception_when_parameters_is_empty(string $token, string $repository): void
     {
         $this->beforeServingApplication(function ($app, Repository $config) use ($token, $repository): void {
-            Cache::shouldReceive('remember')->andReturn('v2.0.0');
+            Cache::shouldReceive('has')->andReturnTrue();
+            Cache::shouldReceive('get')->andReturn('v2.0.0');
 
             $config->set('envbar.provider', 'bitbucket');
 

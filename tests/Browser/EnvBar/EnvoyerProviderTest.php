@@ -15,7 +15,8 @@ class EnvoyerProviderTest extends BrowserTestCase
     public function see_release(): void
     {
         $this->beforeServingApplication(function ($app, Repository $config): void {
-            Cache::shouldReceive('remember')->andReturn('v2.0.0');
+            Cache::shouldReceive('has')->andReturnTrue();
+            Cache::shouldReceive('get')->andReturn('v3.0.0');
 
             $config->set('envbar.provider', 'envoyer');
 
@@ -29,7 +30,7 @@ class EnvoyerProviderTest extends BrowserTestCase
             $browser->visit('/')
                 ->waitForText('Latest Envoyer Release')
                 ->assertSee('Latest Envoyer Release')
-                ->assertSee('v2.0.0');
+                ->assertSee('v3.0.0');
         });
     }
 
@@ -39,7 +40,8 @@ class EnvoyerProviderTest extends BrowserTestCase
     public function throw_exception_when_parameters_is_empty(string $token, string $project): void
     {
         $this->beforeServingApplication(function ($app, Repository $config) use ($token, $project): void {
-            Cache::shouldReceive('remember')->andReturn('v2.0.0');
+            Cache::shouldReceive('has')->andReturnTrue();
+            Cache::shouldReceive('get')->andReturn('v3.0.0');
 
             $config->set('envbar.provider', 'envoyer');
 

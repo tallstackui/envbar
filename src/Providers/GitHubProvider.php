@@ -19,16 +19,22 @@ class GitHubProvider extends AbstractProvider
     {
         $this->validate();
 
-        return Cache::remember($this->cacheKey(), now()->addDays($this->configuration->get('cached_for', 1)), function (): ?string {
-            $response = Http::withToken($this->configuration->get('token'))
-                ->get('https://api.github.com/repos/'.$this->configuration->get('repository').'/tags');
+        if (Cache::has($this->cacheKey())) {
+            return Cache::get($this->cacheKey());
+        }
 
-            if ($response->ok()) {
-                return $response->collect()->first()['name'];
-            }
+        $response = Http::withToken($this->configuration->get('token'))
+            ->get('https://api.github.com/repos/'.$this->configuration->get('repository').'/tags');
 
-            return null;
-        });
+        if ($response->ok()) {
+            Cache::put($this->cacheKey(), $tag = $response->json('0.name'), now()->addDays($this->configuration->get('cached_for', 1)));
+
+            return $tag;
+        }
+
+        $response->throw();
+
+        return null;
     }
 
     /**

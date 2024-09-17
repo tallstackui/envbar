@@ -15,7 +15,8 @@ class GitHubProviderTest extends BrowserTestCase
     public function see_release(): void
     {
         $this->beforeServingApplication(function ($app, Repository $config): void {
-            Cache::shouldReceive('remember')->andReturn('v1.0.0');
+            Cache::shouldReceive('has')->andReturnTrue();
+            Cache::shouldReceive('get')->andReturn('v1.0.0');
 
             $config->set('envbar.provider', 'github');
 
@@ -27,8 +28,8 @@ class GitHubProviderTest extends BrowserTestCase
 
         $this->browse(function (Browser $browser): void {
             $browser->visit('/')
-                ->waitForText('Latest GitHub Release')
-                ->assertSee('Latest GitHub Release')
+                ->waitForText('Latest Gitbub Release')
+                ->assertSee('Latest Gitbub Release')
                 ->assertSee('v1.0.0');
         });
     }
@@ -39,7 +40,8 @@ class GitHubProviderTest extends BrowserTestCase
     public function throw_exception_when_parameters_is_empty(string $token, string $repository): void
     {
         $this->beforeServingApplication(function ($app, Repository $config) use ($token, $repository): void {
-            Cache::shouldReceive('remember')->andReturn('v1.0.0');
+            Cache::shouldReceive('has')->andReturnTrue();
+            Cache::shouldReceive('get')->andReturn('v1.0.0');
 
             $config->set('envbar.provider', 'github');
 

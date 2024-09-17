@@ -19,18 +19,24 @@ class BitBucketProvider extends AbstractProvider
     {
         $this->validate();
 
-        return Cache::remember($this->cacheKey(), now()->addDays($this->configuration->get('cached_for', 1)), function (): ?string {
-            $response = Http::withToken($this->configuration->get('token'))
-                ->get('https://api.bitbucket.org/2.0/repositories/'.$this->configuration->get('repository').'/refs/tags', [
-                    'sort' => 'target.date',
-                ]);
+        if (Cache::has($this->cacheKey())) {
+            return Cache::get($this->cacheKey());
+        }
 
-            if ($response->ok()) {
-                return rescue(fn () => $response->collect()->get('values')[0]['name'], report: false);
-            }
+        $response = Http::withToken($this->configuration->get('token'))
+            ->get('https://api.bitbucket.org/2.0/repositories/'.$this->configuration->get('repository').'/refs/tags', [
+                'sort' => 'target.date',
+            ]);
 
-            return null;
-        });
+        if ($response->ok()) {
+            Cache::put($this->cacheKey(), $tag = $response->json('values.0.name'), now()->addDays($this->configuration->get('cached_for', 1)));
+
+            return $tag;
+        }
+
+        $response->throw();
+
+        return null;
     }
 
     /**
