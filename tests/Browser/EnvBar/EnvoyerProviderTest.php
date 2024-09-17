@@ -52,7 +52,7 @@ class EnvoyerProviderTest extends BrowserTestCase
         });
 
         $this->browse(function (Browser $browser) use ($token): void {
-            $expected = $token === '' ? 'token' : 'repository';
+            $expected = $token === '' ? 'token' : 'project_id';
 
             $browser->visit('/')->assertSee("The Envoyer provider requires the $expected key to be set.");
         });
