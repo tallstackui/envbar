@@ -30,7 +30,7 @@ Almost all the configuration is done through environment variables. Here are the
 6. `ENVBAR_WARNING_MESSAGE` - Allows you to set a warning message.
 7. `ENVBAR_CLOSABLE_ENABLED` - If the close button should be displayed. Default is `true`.
 8. `ENVBAR_CLOSABLE_TIMEOUT` - If after closing the bar, it should be displayed again after a certain time, in minutes. Default is `null`.
-9. `ENVBAR_FOR_AUTHENTICATED_USERS_ENABLED` - If the bar should be displayed only for authenticated users. Default is `false`. Requires a Gate to be defined with `envbar::view` ability.
+9. `ENVBAR_FOR_AUTHENTICATED_USERS_ENABLED` - If the bar should be displayed only for authenticated users. Default is `false`. Requires a Gate to be defined with `envbar::view` ability, [similar we do with Horizon](https://laravel.com/docs/11.x/horizon#dashboard-authorization), but with `envbar::view` ability.
 10. `ENVBAR_FOR_AUTHENTICATED_USERS_GUARD` - The default guard to be used for authenticated users. Default is `web`.
 11. `ENVBAR_ON_MOBILE` - If the bar should be displayed on mobile. Default is `false`.
 12. `ENVBAR_PROVIDER` - The provider to be used for fetching the last release. Allowed: github, bitbucket, envoyer. Default is `null`.
