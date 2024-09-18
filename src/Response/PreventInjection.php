@@ -82,7 +82,7 @@ class PreventInjection
      */
     private function forMobile(): bool
     {
-        if (config('envbar.on_mobile')) {
+        if (config('envbar.on_mobile') === true) {
             return false;
         }
 

@@ -44,7 +44,6 @@ class Render
     public function component(): View
     {
         return view('envbar::components.envbar', [
-            'id' => uniqid(),
             'show' => Cache::pull('envbar::show'),
             ...app(EnvBarComponentCompiler::class)(),
         ]);

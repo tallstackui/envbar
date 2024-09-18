@@ -18,6 +18,10 @@ class ResponseHandle
     {
         $content = $this->response->getContent();
 
+        if ($content === false) {
+            return $this->response;
+        }
+
         if (($head = strpos($content, '<head>')) !== false) {
             $content = substr_replace($content, $this->render->css(), $head + 6, 0); // @phpstan-ignore-line
             $content = substr_replace($content, $this->render->js(), $head + 6, 0); // @phpstan-ignore-line
