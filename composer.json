@@ -61,7 +61,7 @@
             "./vendor/bin/phpstan analyse --memory-limit=2G"
         ]
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "allow-plugins": {
