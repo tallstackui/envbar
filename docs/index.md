@@ -5,7 +5,7 @@
 All you need to do to use the package is to install it via composer:
 
 ```bash
-composer require tallstackui/envbar
+composer require tallstackui/envbar:^0.1.0@beta
 ```
 
 After that, the EnvBar will be injected on your application.
