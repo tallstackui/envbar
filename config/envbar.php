@@ -127,7 +127,7 @@ return [
     |
     */
     'ignore_on' => [
-        'pulse/*',
+        'pulse',
         'horizon/*',
         'telescope/*',
     ],
