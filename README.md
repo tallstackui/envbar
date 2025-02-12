@@ -8,19 +8,15 @@
     <a href="https://php.net"><img alt="PHP 8.2" src="https://img.shields.io/badge/PHP-^8.1-777BB4?style=for-the-badge&logo=php"></a>
 </p>
 
-> This package is part of the TallStackUi.
+> This package is a first-party package of TallStackUi project.
 
 ## Introduction
 
 **EnvBar** is a powerful environment bar injected at the top of the page, displaying useful information from the current environment.
 
-## Beta
-
-This package is currently in beta. While we don't anticipate breaking changes, we may introduce them in minor releases if necessary.
-
 ## Documentation
 
-[Temporary docs are hosted here in the repository, click here!](./docs/index.md)
+[The official TallStackUI documentation also covers the EnvBar documentation - click here](https://tallstackui.com/docs/v2/helpers/env-bar)
 
 ## Sponsorship
 
