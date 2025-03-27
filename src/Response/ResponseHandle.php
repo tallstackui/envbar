@@ -31,7 +31,7 @@ class ResponseHandle
 
         $content = preg_replace_callback(
             $pattern,
-            fn (array $matches) => $matches[0] . PHP_EOL . $this->render->component(), // @phpstan-ignore-line
+            fn (array $matches) => $matches[0].PHP_EOL.$this->render->component(), // @phpstan-ignore-line
             $content,
             1
         );
