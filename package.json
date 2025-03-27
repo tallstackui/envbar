@@ -6,7 +6,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vite build --minify",
+    "build": "vite build",
     "dev": "vite"
   },
   "dependencies": {
