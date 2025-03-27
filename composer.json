@@ -44,6 +44,7 @@
     },
     "scripts": {
         "test": "./vendor/bin/pest --filter Structure --parallel",
+        "test:browser": "./vendor/bin/pest --filter Browser",
         "type": "./vendor/bin/pest --type-coverage --min=100",
         "format": "./vendor/bin/pint",
         "rector": "vendor/bin/rector process --dry-run",
