@@ -1,7 +1,24 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss" prefix(eb);
 
 [x-cloak] {
     display: none;
+}
+
+@source "../../src/";
+@source "../views/";
+
+@plugin "@tailwindcss/forms";
+
+@theme {
+    --color-envbar-50: #f4faf3;
+    --color-envbar-100: #e6f5e3;
+    --color-envbar-200: #cdeac8;
+    --color-envbar-300: #a5d89d;
+    --color-envbar-400: #74be6a;
+    --color-envbar-500: #5cb450;
+    --color-envbar-600: #3f8435;
+    --color-envbar-700: #33692c;
+    --color-envbar-800: #2c5427;
+    --color-envbar-900: #254522;
+    --color-envbar-950: #0f250e;
 }
