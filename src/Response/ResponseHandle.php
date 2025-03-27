@@ -36,7 +36,6 @@ class ResponseHandle
             1
         );
 
-
         return $this->response->setContent($content);
     }
 }
