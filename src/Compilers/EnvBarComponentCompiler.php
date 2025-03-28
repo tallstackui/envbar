@@ -29,6 +29,7 @@ class EnvBarComponentCompiler
             'size',
             'fixed',
             'links',
+            'bottom',
             'closable',
             'warning_message',
             'tailwind_breaking_points',

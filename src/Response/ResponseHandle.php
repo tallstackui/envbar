@@ -27,14 +27,18 @@ class ResponseHandle
             $content = substr_replace($content, $this->render->js(), $head + 6, 0); // @phpstan-ignore-line
         }
 
-        $pattern = '/<body\b(?:[^"\'<>]*|"(?:[^"\\\\]|\\\\.)*"|\'(?:[^\'\\\\]|\\\\.)*\')*>/i';
+        if (str_contains($content, '@envbar')) {
+            $content = str_replace('@envbar', $this->render->component()->render(), $content);
+        } else {
+            $pattern = '/<body\b(?:[^"\'<>]*|"(?:[^"\\\\]|\\\\.)*"|\'(?:[^\'\\\\]|\\\\.)*\')*>/i';
 
-        $content = preg_replace_callback(
-            $pattern,
-            fn (array $matches) => $matches[0].PHP_EOL.$this->render->component(), // @phpstan-ignore-line
-            $content,
-            1
-        );
+            $content = preg_replace_callback(
+                $pattern,
+                fn (array $matches) => $matches[0].PHP_EOL.$this->render->component(), // @phpstan-ignore-line
+                $content,
+                1
+            );
+        }
 
         return $this->response->setContent($content);
     }

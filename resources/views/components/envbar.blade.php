@@ -1,11 +1,13 @@
 <div @class([
-        'eb:top-0 eb:z-50',
+        'eb:z-50 eb:w-full',
+        'eb:top-0' => $configuration['bottom'] === false,
+        'eb:bottom-0' => $configuration['bottom'] === true,
         'eb:p-0.5' => $configuration['size'] === 'xs',
         'eb:p-1' => $configuration['size'] === 'sm',
         'eb:p-3' => $configuration['size'] === 'md',
         'eb:p-4' => $configuration['size'] === 'lg',
         'eb:p-5' => $configuration['size'] === 'xl',
-        'eb:sticky' => $configuration['fixed'],
+        'eb:fixed' => $configuration['fixed'],
         $colors['background']
     ]) id="envbar">
     <div class="eb:flex eb:flex-wrap eb:items-center eb:space-x-1 eb:gap-1">
