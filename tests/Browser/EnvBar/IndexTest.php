@@ -70,7 +70,7 @@ class IndexTest extends BrowserTestCase
     #[Test]
     public function ignore_successfully(): void
     {
-        $this->beforeServingApplication(fn ($app, Repository $config) => $config->set('envbar.ignore_on', ['/']));
+        $this->beforeServingApplication(fn ($app, Repository $config) => $config->set('envbar.ignore_on', ['*']));
 
         $this->browse(function (Browser $browser): void {
             $browser->visit('/')
