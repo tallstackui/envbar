@@ -48,7 +48,7 @@ class PreventInjection
     private function forRoutes(): bool
     {
         return collect(config('envbar.ignore_on'))
-            ->contains(fn (string $route) => $this->request->is($route));
+            ->contains(fn (string $route) => $this->request->routeIs($route));
     }
 
     /**

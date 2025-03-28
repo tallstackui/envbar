@@ -133,13 +133,13 @@ return [
     |--------------------------------------------------------------------------
     |
     | Allows you to do not display the EnvBar on specific pages. Behind the scenes,
-    | this feature will use the `Request::is()` method to match the current request.
+    | this feature will use the `Request::routeIs()` method to match the current request.
     |
     */
     'ignore_on' => [
-        'pulse',
-        'horizon/*',
-        'telescope/*',
+        'pulse.*',
+        'horizon.*',
+        'telescope.*',
     ],
 
     /*
