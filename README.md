@@ -4,8 +4,8 @@
 
 <p align="center">
     <img alt="Packagist Downloads" src="https://img.shields.io/packagist/dt/tallstackui/envbar?style=for-the-badge">
-    <a href="https://laravel.com"><img alt="Laravel v10.x" src="https://img.shields.io/badge/Laravel-^v10.x-FF2D20?style=for-the-badge&logo=laravel"></a>
-    <a href="https://php.net"><img alt="PHP 8.2" src="https://img.shields.io/badge/PHP-^8.1-777BB4?style=for-the-badge&logo=php"></a>
+    <a href="https://laravel.com"><img alt="Laravel v11.x" src="https://img.shields.io/badge/Laravel-^v11.x-FF2D20?style=for-the-badge&logo=laravel"></a>
+    <a href="https://php.net"><img alt="PHP 8.2" src="https://img.shields.io/badge/PHP-^8.2-777BB4?style=for-the-badge&logo=php"></a>
 </p>
 
 > This package is a first-party package of TallStackUi project.
@@ -16,7 +16,7 @@
 
 ## Documentation
 
-[The official TallStackUI documentation also covers the EnvBar documentation - click here](https://tallstackui.com/docs/v2/helpers/env-bar)
+[The official TallStackUI documentation also covers the EnvBar documentation - click here](https://tallstackui.com/docs/v3/helpers/env-bar)
 
 ## Sponsorship
 

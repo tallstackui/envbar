@@ -220,7 +220,30 @@ return [
         'envoyer' => [
             'token' => env('ENVBAR_ENVOYER_TOKEN', null),
             'project_id' => env('ENVBAR_ENVOYER_PROJECT_ID', null),
-            'cached_for' => env('ENVBAR_BITBUCKET_DAYS_FOR_CACHE', 1),
+            'cached_for' => env('ENVBAR_ENVOYER_DAYS_FOR_CACHE', 1),
         ],
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Provider Failure Cache
+    |--------------------------------------------------------------------------
+    |
+    | Determines for how many minutes a failed release fetch is remembered, so a
+    | provider that is down or misconfigured is not requested on every page view.
+    |
+    */
+    'provider_failure_cached_for' => env('ENVBAR_PROVIDER_FAILURE_MINUTES_FOR_CACHE', 5),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Content Security Policy
+    |--------------------------------------------------------------------------
+    |
+    | The nonce applied to the styles and scripts injected by the EnvBar, required
+    | when the application enforces a Content Security Policy. Set the nonce itself
+    | or `true` to reuse the one already registered on Vite.
+    |
+    */
+    'nonce' => env('ENVBAR_NONCE'),
 ];

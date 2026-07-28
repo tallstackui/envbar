@@ -3,17 +3,13 @@
 namespace TallStackUi\EnvBar\Providers;
 
 use Exception;
-use Illuminate\Support\Collection;
+use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Cache;
 
 abstract class AbstractProvider
 {
-    /** The required keys for the provider. */
+    /** @var array<int, string> The required keys for the provider. */
     protected array $keys = [];
-
-    public function __construct(protected ?Collection $configuration = null)
-    {
-        $this->configuration = collect(config('envbar.providers.'.$this->provider()));
-    }
 
     /**
      * Get the provider name.
@@ -45,7 +41,7 @@ abstract class AbstractProvider
         $title = __('envbar::providers.'.$provider, locale: 'en');
 
         foreach ($this->keys as $key) {
-            if (blank($this->configuration->get($key))) {
+            if (blank($this->configuration($key))) {
                 throw new Exception("The $title provider requires the {$key} key to be set.");
             }
         }
@@ -57,5 +53,60 @@ abstract class AbstractProvider
     public function cacheKey(): string
     {
         return 'envbar::'.$this->provider().'::release';
+    }
+
+    /**
+     * Get the cache key that short-circuits requests after a failed fetch.
+     */
+    public function failureCacheKey(): string
+    {
+        return $this->cacheKey().'::failed';
+    }
+
+    /**
+     * Get a configuration value of the provider.
+     */
+    protected function configuration(string $key, mixed $default = null): mixed
+    {
+        return data_get(config('envbar.providers.'.$this->provider()), $key, $default);
+    }
+
+    /**
+     * Resolve the release through the cache, skipping the API while a recent fetch is known to have failed.
+     *
+     * @param  callable(): Response  $request
+     *
+     * @throws Exception
+     */
+    protected function release(callable $request, string $key): ?string
+    {
+        $this->validate();
+
+        if (Cache::has($this->cacheKey())) {
+            $cached = Cache::get($this->cacheKey());
+
+            return is_string($cached) ? $cached : null;
+        }
+
+        if (Cache::has($this->failureCacheKey())) {
+            return null;
+        }
+
+        $response = $request();
+
+        if ($response->ok()) {
+            $tag = $response->json($key);
+            $tag = is_string($tag) ? $tag : null;
+
+            Cache::put($this->cacheKey(), $tag, now()->addDays((int) $this->configuration('cached_for', 1)));
+
+            return $tag;
+        }
+
+        Cache::put($this->failureCacheKey(), true, now()->addMinutes((int) config('envbar.provider_failure_cached_for', 5)));
+
+        $response->throw();
+
+        return null;
     }
 }

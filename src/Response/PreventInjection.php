@@ -47,8 +47,13 @@ class PreventInjection
      */
     private function forRoutes(): bool
     {
-        return collect(config('envbar.ignore_on'))
-            ->contains(fn (string $route) => $this->request->routeIs($route));
+        foreach ((array) config('envbar.ignore_on') as $route) {
+            if (is_string($route) && $this->request->routeIs($route)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -74,7 +79,11 @@ class PreventInjection
             return false;
         }
 
-        return ! in_array(app()->environment(), array_keys($environments ?? []));
+        if (! is_array($environments)) {
+            return true;
+        }
+
+        return ! in_array(app()->environment(), array_keys($environments), true);
     }
 
     /**

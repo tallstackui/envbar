@@ -2,11 +2,11 @@
 
 namespace TallStackUi\EnvBar\Providers;
 
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 class EnvoyerProvider extends AbstractProvider
 {
+    /** @var array<int, string> */
     protected array $keys = [
         'token',
         'project_id',
@@ -17,24 +17,8 @@ class EnvoyerProvider extends AbstractProvider
      */
     public function fetch(): ?string
     {
-        $this->validate();
-
-        if (Cache::has($this->cacheKey())) {
-            return Cache::get($this->cacheKey());
-        }
-
-        $response = Http::withToken($this->configuration->get('token'))
-            ->get('https://envoyer.io/api/projects/'.$this->configuration->get('project_id'));
-
-        if ($response->ok()) {
-            Cache::put($this->cacheKey(), $tag = $response->json('project.last_deployed_branch'), now()->addDays($this->configuration->get('cached_for', 1)));
-
-            return $tag;
-        }
-
-        $response->throw();
-
-        return null;
+        return $this->release(fn () => Http::withToken($this->configuration('token'))
+            ->get('https://envoyer.io/api/projects/'.$this->configuration('project_id')), 'project.last_deployed_branch');
     }
 
     /**

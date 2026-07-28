@@ -29,9 +29,9 @@ export default (configuration, show) => ({
 
         this.element().style.display = 'none';
 
-        localStorage.removeItem('envbar::closed');
-
         if (!timeout) {
+            localStorage.removeItem('envbar::closed');
+
             return;
         }
 
@@ -42,27 +42,32 @@ export default (configuration, show) => ({
         const width = window.innerWidth;
         const span = this.element('resolution');
 
+        if (!span) {
+            return;
+        }
+
+        // Mirrors the Tailwind breakpoints: sm 640, md 768, lg 1024, xl 1280, 2xl 1536.
         if (width < 640) {
+            return span.innerText = 'XS';
+        }
+
+        if (width < 768) {
             return span.innerText = 'SM';
         }
 
-        if (width >= 640 && width < 768) {
+        if (width < 1024) {
             return span.innerText = 'MD';
         }
 
-        if (width >= 768 && width < 1024) {
+        if (width < 1280) {
             return span.innerText = 'LG';
         }
 
-        if (width >= 1024 && width < 1280) {
+        if (width < 1536) {
             return span.innerText = 'XL';
         }
 
-        if (width >= 1280 && width < 1536) {
-            return span.innerText = '2XL';
-        }
-
-        return span.innerText = '> 2XL';
+        return span.innerText = '2XL';
     },
 
     element (what = '') {

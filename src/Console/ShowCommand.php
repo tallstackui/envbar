@@ -13,7 +13,7 @@ class ShowCommand extends Command
 
     public function handle(): int
     {
-        Cache::put('envbar::show', true);
+        Cache::put('envbar::show', true, now()->addDay());
 
         $this->components->info('EnvBar will be shown again. Refresh the browser!');
 

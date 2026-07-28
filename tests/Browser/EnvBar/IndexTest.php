@@ -108,6 +108,18 @@ class IndexTest extends BrowserTestCase
     }
 
     #[Test]
+    public function nonce_is_applied(): void
+    {
+        $this->beforeServingApplication(fn ($app, Repository $config) => $config->set('envbar.nonce', 'tallstackui'));
+
+        $this->browse(function (Browser $browser): void {
+            $browser->visit('/')
+                ->waitForText('Environment')
+                ->assertSourceHas('nonce="tallstackui"');
+        });
+    }
+
+    #[Test]
     public function dropdown_works_successfully(): void
     {
         $this->beforeServingApplication(fn ($app, Repository $config) => $config->set('envbar.links', 'https://google.com'));

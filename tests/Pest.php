@@ -1,4 +1,7 @@
 <?php
 
-uses(Tests\Browser\BrowserTestCase::class)->in('Browser');
-uses(Tests\TestCase::class)->in('Structure');
+use Tests\Browser\BrowserTestCase;
+use Tests\TestCase;
+
+uses(BrowserTestCase::class)->in('Browser');
+uses(TestCase::class)->in('Structure');

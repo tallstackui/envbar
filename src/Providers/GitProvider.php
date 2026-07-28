@@ -19,11 +19,12 @@ class GitProvider extends AbstractProvider
 
         $string = str($branch);
 
-        if ($string->contains('ref: refs/heads/')) {
-            return $string->replace('ref: refs/heads/', '');
+        if (! $string->contains('ref: refs/heads/')) {
+            return null;
         }
 
-        return null;
+        // .git/HEAD is written with a trailing newline.
+        return $string->replace('ref: refs/heads/', '')->trim()->toString();
     }
 
     /**

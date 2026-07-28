@@ -8,6 +8,7 @@
 
 /tests                export-ignore
 /docs                 export-ignore
+CLAUDE.md             export-ignore
 composer.lock         export-ignore
 package.json          export-ignore
 package-lock.json     export-ignore

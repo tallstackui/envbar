@@ -6,7 +6,6 @@ use Illuminate\Config\Repository;
 use Illuminate\Support\Facades\Cache;
 use Laravel\Dusk\Browser;
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\Attributes\TestWith;
 use Tests\Browser\BrowserTestCase;
 
 class BitBucketProviderTest extends BrowserTestCase
@@ -23,40 +22,36 @@ class BitBucketProviderTest extends BrowserTestCase
 
             $config->set('envbar.providers.bitbucket', [
                 'token' => 'tallstackui',
-                'repository' => 'tallstack/tallstack-ui',
+                'repository' => 'tallstackui/envbar',
             ]);
         });
 
         $this->browse(function (Browser $browser): void {
             $browser->visit('/')
-                ->waitForText('Latest Bitbucket Release')
-                ->assertSee('Latest Bitbucket Release')
+                ->waitForText('Latest BitBucket Release')
+                ->assertSee('Latest BitBucket Release')
                 ->assertSee('v2.0.0');
         });
     }
 
     #[Test]
-    #[TestWith(['', 'foo/bar'])]
-    #[TestWith(['foo', ''])]
-    public function throw_exception_when_parameters_is_empty(string $token, string $repository): void
+    public function page_survives_an_incomplete_configuration(): void
     {
-        $this->beforeServingApplication(function ($app, Repository $config) use ($token, $repository): void {
-            Cache::shouldReceive('has')->andReturnTrue();
-            Cache::shouldReceive('get')->andReturn('v2.0.0');
-            Cache::shouldReceive('pull')->andReturnNull();
-
+        $this->beforeServingApplication(function ($app, Repository $config): void {
             $config->set('envbar.provider', 'bitbucket');
 
             $config->set('envbar.providers.bitbucket', [
-                'token' => $token,
-                'repository' => $repository,
+                'token' => null,
+                'repository' => null,
             ]);
         });
 
-        $this->browse(function (Browser $browser) use ($token): void {
-            $expected = $token === '' ? 'token' : 'repository';
-
-            $browser->visit('/')->assertSee("The BitBucket provider requires the $expected key to be set.");
+        $this->browse(function (Browser $browser): void {
+            $browser->visit('/')
+                ->waitForText('Environment')
+                ->assertSee('Environment')
+                ->assertSee('testing')
+                ->assertDontSee('Latest BitBucket Release');
         });
     }
 }

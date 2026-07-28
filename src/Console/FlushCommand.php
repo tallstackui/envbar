@@ -14,7 +14,8 @@ class FlushCommand extends Command
     public function handle(): int
     {
         foreach (array_keys(config('envbar.providers')) as $provider) {
-            Cache::forget('envbar::'.$provider.'::release');
+            Cache::forget($key = 'envbar::'.$provider.'::release');
+            Cache::forget($key.'::failed');
         }
 
         $this->components->info('EnvBar release cache cleared!');

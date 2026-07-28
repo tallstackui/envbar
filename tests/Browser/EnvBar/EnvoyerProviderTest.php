@@ -6,7 +6,6 @@ use Illuminate\Config\Repository;
 use Illuminate\Support\Facades\Cache;
 use Laravel\Dusk\Browser;
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\Attributes\TestWith;
 use Tests\Browser\BrowserTestCase;
 
 class EnvoyerProviderTest extends BrowserTestCase
@@ -36,27 +35,23 @@ class EnvoyerProviderTest extends BrowserTestCase
     }
 
     #[Test]
-    #[TestWith(['', '12345'])]
-    #[TestWith(['foo', ''])]
-    public function throw_exception_when_parameters_is_empty(string $token, string $project): void
+    public function page_survives_an_incomplete_configuration(): void
     {
-        $this->beforeServingApplication(function ($app, Repository $config) use ($token, $project): void {
-            Cache::shouldReceive('has')->andReturnTrue();
-            Cache::shouldReceive('get')->andReturn('v3.0.0');
-            Cache::shouldReceive('pull')->andReturnNull();
-
+        $this->beforeServingApplication(function ($app, Repository $config): void {
             $config->set('envbar.provider', 'envoyer');
 
             $config->set('envbar.providers.envoyer', [
-                'token' => $token,
-                'project_id' => $project,
+                'token' => null,
+                'project_id' => null,
             ]);
         });
 
-        $this->browse(function (Browser $browser) use ($token): void {
-            $expected = $token === '' ? 'token' : 'project_id';
-
-            $browser->visit('/')->assertSee("The Envoyer provider requires the $expected key to be set.");
+        $this->browse(function (Browser $browser): void {
+            $browser->visit('/')
+                ->waitForText('Environment')
+                ->assertSee('Environment')
+                ->assertSee('testing')
+                ->assertDontSee('Latest Envoyer Release');
         });
     }
 }

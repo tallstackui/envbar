@@ -7,7 +7,6 @@ tests/Browser/source
 tests/Browser/**/tests/
 .phpunit.result.cache
 yarn-error.log
-_DS_Store
 .idea
 .vscode
 .php-cs-fixer.cache

@@ -44,7 +44,7 @@
         <div class="eb:flex eb:items-center eb:absolute eb:right-2">
             @if ($configuration['links'] !== null)
                 <div class="eb:items-center eb:gap-1">
-                    <select id="envbar-dropdown" class="eb:w-full eb:rounded-md eb:border-0 eb:py-0.5 eb:pl-3 eb:pr-10 eb:text-gray-900 eb:ring-1 eb:ring-inset eb:ring-gray-300 focus:eb:outline-none focus:eb:ring-1 eb:ring-gray-300 focus:eb:ring-gray-300">
+                    <select id="envbar-dropdown" class="eb:w-full eb:rounded-md eb:border-0 eb:py-0.5 eb:pl-3 eb:pr-10 eb:text-gray-900 eb:ring-1 eb:ring-inset eb:ring-gray-300 eb:focus:outline-none eb:focus:ring-1 eb:focus:ring-gray-300">
                         <option value="">@lang('envbar::messages.select')</option>
                         @foreach ($configuration['links'] as $link)
                             <option value="{{ $link['url'] }}">{{ $link['name'] }}</option>
@@ -58,7 +58,7 @@
             </div>
             @endif
             @if ($configuration['closable']['enabled'])
-                <button onclick="window.hide()" dusk="envbar_close_button">
+                <button type="button" id="envbar-close" dusk="envbar_close_button">
                     <x-envbar::icons.x class="eb:h-4 eb:w-4" />
                 </button>
             @endif
@@ -66,18 +66,29 @@
     </div>
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => window.$envbar(@js($configuration), @js($show)).init());
-    document.addEventListener('livewire:navigated', () => window.$envbar(@js($configuration), @js($show)).init());
-
+<script{!! $nonce !!}>
     (function() {
-        window.hide = () => window.$envbar(@js($configuration)).close();
+        const envbar = window.$envbar(@js($configuration), @js($show));
+
+        const boot = () => envbar.init();
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', boot);
+        } else {
+            boot();
+        }
+
+        document.addEventListener('livewire:navigated', boot);
+
+        @if ($configuration['closable']['enabled'])
+            document.getElementById('envbar-close').addEventListener('click', () => envbar.close());
+        @endif
 
         @if ($configuration['links'] !== null)
             const dropdown = document.getElementById('envbar-dropdown');
 
             dropdown.addEventListener('change', () => {
-                window.open(dropdown.value, '_blank');
+                window.open(dropdown.value, '_blank', 'noopener');
 
                 dropdown.value = '';
             });

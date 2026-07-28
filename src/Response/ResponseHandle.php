@@ -6,6 +6,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ResponseHandle
 {
+    /** Matches an opening tag while tolerating quoted attribute values holding angle brackets. */
+    private const TAG = '/<%s\b(?:[^"\'<>]*|"(?:[^"\\\\]|\\\\.)*"|\'(?:[^\'\\\\]|\\\\.)*\')*>/i';
+
     public function __construct(private readonly Render $render, private readonly Response $response)
     {
         //
@@ -16,30 +19,59 @@ class ResponseHandle
      */
     public function __invoke(): Response
     {
+        if (! $this->html()) {
+            return $this->response;
+        }
+
         $content = $this->response->getContent();
 
         if ($content === false) {
             return $this->response;
         }
 
-        if (($head = strpos($content, '<head>')) !== false) {
-            $content = substr_replace($content, $this->render->css(), $head + 6, 0); // @phpstan-ignore-line
-            $content = substr_replace($content, $this->render->js(), $head + 6, 0); // @phpstan-ignore-line
+        return $this->response->setContent($this->component($this->assets($content)));
+    }
+
+    /**
+     * Determine if the response carries HTML content.
+     */
+    private function html(): bool
+    {
+        return str_contains((string) $this->response->headers->get('Content-Type'), 'text/html');
+    }
+
+    /**
+     * Inject the styles and scripts right after the opening head tag.
+     */
+    private function assets(string $content): string
+    {
+        if (preg_match(sprintf(self::TAG, 'head'), $content, $matches, PREG_OFFSET_CAPTURE) !== 1) {
+            return $content;
         }
+
+        [$tag, $position] = $matches[0];
+
+        $assets = $this->render->css()->toHtml().$this->render->js()->toHtml();
+
+        return substr_replace($content, $assets, $position + strlen($tag), 0);
+    }
+
+    /**
+     * Inject the component on the @envbar placeholder, falling back to the opening body tag.
+     */
+    private function component(string $content): string
+    {
+        $component = $this->render->component()->render();
 
         if (str_contains($content, '@envbar')) {
-            $content = str_replace('@envbar', $this->render->component()->render(), $content);
-        } else {
-            $pattern = '/<body\b(?:[^"\'<>]*|"(?:[^"\\\\]|\\\\.)*"|\'(?:[^\'\\\\]|\\\\.)*\')*>/i';
-
-            $content = preg_replace_callback(
-                $pattern,
-                fn (array $matches) => $matches[0].PHP_EOL.$this->render->component(), // @phpstan-ignore-line
-                $content,
-                1
-            );
+            return str_replace('@envbar', $component, $content);
         }
 
-        return $this->response->setContent($content);
+        return (string) preg_replace_callback(
+            sprintf(self::TAG, 'body'),
+            fn (array $matches): string => $matches[0].PHP_EOL.$component,
+            $content,
+            1
+        );
     }
 }

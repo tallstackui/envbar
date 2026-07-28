@@ -12,6 +12,6 @@ abstract class BaseComponent extends Component
 
     public function render(): Closure
     {
-        return fn (): View => $this->blade();
+        return $this->blade(...);
     }
 }

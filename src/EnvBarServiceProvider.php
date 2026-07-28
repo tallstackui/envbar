@@ -2,8 +2,8 @@
 
 namespace TallStackUi\EnvBar;
 
-use Carbon\Laravel\ServiceProvider;
 use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
 use TallStackUi\EnvBar\Middleware\Injection;
 

@@ -2,8 +2,6 @@
 
 namespace TallStackUi\EnvBar\Compilers;
 
-use Exception;
-use TallStackUi\EnvBar\Compilers\Colors\Colors;
 use TallStackUi\EnvBar\Providers\BitBucketProvider;
 use TallStackUi\EnvBar\Providers\EnvoyerProvider;
 use TallStackUi\EnvBar\Providers\GitHubProvider;
@@ -17,13 +15,15 @@ class EnvBarComponentCompiler
     /**
      * Compiles the base component configurations.
      *
-     * @return array|string[]
-     *
-     * @throws Exception
+     * @return array{
+     *     configuration: array<string, mixed>,
+     *     colors: array<string, string>,
+     *     environment: array<string, string|null>,
+     * }
      */
     public function __invoke(): array
     {
-        $variables = ['configuration', 'colors', 'environment'];
+        $configuration = [];
 
         foreach ([
             'size',
@@ -37,37 +37,60 @@ class EnvBarComponentCompiler
             // When the method exists in this class, with the same name as
             // the configuration, it indicates that we are performing a
             // possible mutation, analysis or change of the default value.
-            $variables['configuration'][$method] = method_exists($this, $method)
+            $configuration[$method] = method_exists($this, $method)
                 ? $this->{$method}()
                 : config("envbar.{$method}");
         }
 
-        $variables['colors']['background'] = Colors::background();
-        $variables['colors']['icons'] = Colors::icons();
-
-        $variables['environment'] = [
-            'provider' => config('envbar.provider'),
-            'branch' => app(GitProvider::class)->fetch(),
-            'release' => $this->provider(),
-            'environment' => app()->environment(),
+        return [
+            'configuration' => $configuration,
+            'colors' => [
+                'background' => Colors::background(),
+                'icons' => Colors::icons(),
+            ],
+            'environment' => [
+                'provider' => $this->label(),
+                'branch' => app(GitProvider::class)->fetch(),
+                'release' => $this->release(),
+                'environment' => app()->environment(),
+            ],
         ];
-
-        return $variables;
     }
 
     /**
-     * Fetch the provider.
-     *
-     * @throws Exception
+     * Fetch the latest release, degrading to null so a broken
+     * provider never takes the whole application down.
      */
-    private function provider(): ?string
+    private function release(): ?string
     {
-        return match (config('envbar.provider')) {
-            'github' => app(GitHubProvider::class)->fetch(),
-            'bitbucket' => app(BitBucketProvider::class)->fetch(),
-            'envoyer' => app(EnvoyerProvider::class)->fetch(),
+        $provider = match (config('envbar.provider')) {
+            'github' => GitHubProvider::class,
+            'bitbucket' => BitBucketProvider::class,
+            'envoyer' => EnvoyerProvider::class,
             default => null,
         };
+
+        if ($provider === null) {
+            return null;
+        }
+
+        return rescue(fn () => app($provider)->fetch(), null);
+    }
+
+    /**
+     * Get the display name of the configured provider.
+     */
+    private function label(): ?string
+    {
+        $provider = config('envbar.provider');
+
+        if (! is_string($provider) || blank($provider)) {
+            return null;
+        }
+
+        $label = __($key = 'envbar::providers.'.$provider);
+
+        return is_string($label) && $label !== $key ? $label : $provider;
     }
 
     /**
@@ -75,28 +98,33 @@ class EnvBarComponentCompiler
      */
     private function tailwind_breaking_points(): bool
     {
-        return file_exists(base_path('tailwind.config.js')) && config('envbar.tailwind_breaking_points');
+        return file_exists(base_path('tailwind.config.js')) && (bool) config('envbar.tailwind_breaking_points');
     }
 
     /**
      * Format the links what will be displayed on the dropdown.
+     *
+     * @return array<int, array{name: string, url: string}>|null
      */
     private function links(): ?array
     {
-        $links = collect(config('envbar.links'))->filter();
+        $links = array_values(array_filter(array_map(
+            static fn (mixed $link): string => is_string($link) ? $link : '',
+            (array) config('envbar.links')
+        )));
 
-        if ($links->isEmpty()) {
+        if ($links === []) {
             return null;
         }
 
-        return $links->map(function (string $link) {
-            if (str_contains($link, '|')) {
-                [$name, $url] = explode('|', $link);
-
-                return ['name' => $name, 'url' => $url];
+        return array_map(static function (string $link): array {
+            if (! str_contains($link, '|')) {
+                return ['name' => $link, 'url' => $link];
             }
 
-            return ['name' => $link, 'url' => $link];
-        })->toArray();
+            [$name, $url] = explode('|', $link, 2);
+
+            return ['name' => $name, 'url' => $url];
+        }, $links);
     }
 }
