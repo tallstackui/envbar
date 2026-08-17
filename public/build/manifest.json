@@ -5,7 +5,7 @@
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "app.js",
+    "file": "app2.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
